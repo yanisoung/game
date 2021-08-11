@@ -17,7 +17,9 @@ public class WindowsDraw extends JFrame {
 
 	@Override
 	public void paint (Graphics g) {
-		g.drawImage(GoldMinerPicUtil.get(GoldMinerConstant.BG_LAND), 0, 0, null);
+		g.drawImage(GoldMinerPicUtil.get(GoldMinerConstant.BG_LAND), 0, 0, 1200, 800, null);
+		g.drawImage(GoldMinerPicUtil.get(GoldMinerConstant.BG_SKY), 0, 10, 1200, 200, null);
+		g.drawImage(GoldMinerPicUtil.get(GoldMinerConstant.MINER), 530, 60, 140, 150, null);
 	}
 
 	/**
@@ -47,6 +49,6 @@ public class WindowsDraw extends JFrame {
 	}
 
 	public static void main (String[] args) {
-		drawWindows("黄金矿工", 800, 300, 563, 599, 1000L);
+		drawWindows("黄金矿工", 800, 300, 1200, 800, 1000L);
 	}
 }

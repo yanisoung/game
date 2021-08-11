@@ -34,6 +34,14 @@ public class GoldMinerPicUtil {
 		IMAGE_MAP.put(GoldMinerConstant.MIDDLE_STONE, defaultToolkit.getImage(PRE + GoldMinerConstant.MIDDLE_STONE));
 		//大块 石头
 		IMAGE_MAP.put(GoldMinerConstant.BIG_STONE, defaultToolkit.getImage(PRE + GoldMinerConstant.BIG_STONE));
+
+		//矿工
+		IMAGE_MAP.put(GoldMinerConstant.MINER, defaultToolkit.getImage(PRE + GoldMinerConstant.MINER));
+		//失败的矿工
+		IMAGE_MAP.put(GoldMinerConstant.FAIL_MINER, defaultToolkit.getImage(PRE + GoldMinerConstant.FAIL_MINER));
+		//疯狂的矿工
+		IMAGE_MAP.put(GoldMinerConstant.CRAZY_MINER, defaultToolkit.getImage(PRE + GoldMinerConstant.CRAZY_MINER));
+
 	}
 
 	public static Image get (String key) {

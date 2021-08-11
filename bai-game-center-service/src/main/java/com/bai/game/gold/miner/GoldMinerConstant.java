@@ -52,4 +52,19 @@ public class GoldMinerConstant {
 	 * 大块 石头
 	 */
 	public static final String BIG_STONE = "bigBlackStone.png";
+
+	/**
+	 * 矿工
+	 */
+	public static final String MINER = "miner.png";
+
+	/**
+	 * 失败的矿工
+	 */
+	public static final String FAIL_MINER = "failMiner.png";
+
+	/**
+	 * 疯狂的矿工
+	 */
+	public static final String CRAZY_MINER = "crazyMiner.png";
 }
