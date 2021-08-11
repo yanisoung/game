@@ -10,6 +10,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>bai-game-center-start</module>
+        <module>bai-game-center-service</module>
     </modules>
 
     <!--统一管理jar包版本-->
