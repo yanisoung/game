@@ -14,6 +14,11 @@ import com.bai.game.gold.miner.GoldMinerPicUtil;
  */
 public class GoldDraw {
 
+	/**
+	 * 随机刷新金子
+	 *
+	 * @param g
+	 */
 	public static void paint (Graphics g) {
 		List<Image> allGold = GoldMinerPicUtil.getAllGold();
 		Random random = new Random();

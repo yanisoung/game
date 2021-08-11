@@ -30,7 +30,7 @@ public class GoldMinerCenter extends JFrame {
 	public static void start () {
 		GoldMinerCenter goldMinerCenter = new GoldMinerCenter();
 		//初始化窗口
-		WindowsDraw.drawWindows(goldMinerCenter, null);
+		WindowsDraw.drawWindows(goldMinerCenter);
 	}
 
 	public static void main (String[] args) {

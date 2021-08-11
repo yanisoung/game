@@ -13,6 +13,11 @@ import com.bai.game.gold.miner.GoldMinerPicUtil;
  */
 public class GoldMinerDraw {
 
+	/**
+	 * 绘制矿工
+	 *
+	 * @param g
+	 */
 	public static void paint (Graphics g) {
 		g.drawImage(GoldMinerPicUtil.get(GoldMinerConstant.MINER), 530, 60, 140, 150, null);
 	}
