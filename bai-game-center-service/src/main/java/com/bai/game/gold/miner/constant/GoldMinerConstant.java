@@ -1,4 +1,4 @@
-package com.bai.game.gold.miner;
+package com.bai.game.gold.miner.constant;
 
 /**
  * 黄金矿工静态资源常量类

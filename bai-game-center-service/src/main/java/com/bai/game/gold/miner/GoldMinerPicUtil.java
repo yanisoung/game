@@ -2,7 +2,11 @@ package com.bai.game.gold.miner;
 
 import java.awt.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import com.bai.game.gold.miner.constant.GoldMinerConstant;
+import com.google.common.collect.Lists;
 
 /**
  * @author Bai
@@ -46,5 +50,16 @@ public class GoldMinerPicUtil {
 
 	public static Image get (String key) {
 		return IMAGE_MAP.get(key);
+	}
+
+	public static List<Image> getAllGold () {
+		return Lists.newArrayList(IMAGE_MAP.get(GoldMinerConstant.SMALLEST_GOLD),
+			IMAGE_MAP.get(GoldMinerConstant.SMALL_GOLD), IMAGE_MAP.get(GoldMinerConstant.MIDDLE_GOLD),
+			IMAGE_MAP.get(GoldMinerConstant.BIG_GOLD));
+	}
+
+	public static List<Image> getAllStone () {
+		return Lists.newArrayList(IMAGE_MAP.get(GoldMinerConstant.SMALL_STONE),
+			IMAGE_MAP.get(GoldMinerConstant.MIDDLE_STONE), IMAGE_MAP.get(GoldMinerConstant.BIG_STONE));
 	}
 }
