@@ -17,9 +17,25 @@ public class GoldMinerPicUtil {
 	private static final String PRE = "bai-game-center-service/src/main/resources/goldminer/";
 
 	/**
-	 * 图片集合
+	 * 背景集合
 	 */
-	public static Map<String, Image> IMAGE_MAP = new HashMap<>();
+	public static Map<String, Image> BG_IMAGE_MAP = new HashMap<>();
+
+	/**
+	 * 金子集合
+	 */
+	public static Map<String, Image> GOLD_IMAGE_MAP = new HashMap<>();
+
+	/**
+	 * 石头集合
+	 */
+	public static Map<String, Image> STONE_IMAGE_MAP = new HashMap<>();
+
+	/**
+	 * 矿工集合
+	 */
+	public static Map<String, Image> MINER_IMAGE_MAP = new HashMap<>();
+
 	/**
 	 * 图片宽度集合
 	 */
@@ -28,31 +44,41 @@ public class GoldMinerPicUtil {
 	static {
 		Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
 		//背景 - 天空
-		IMAGE_MAP.put(GoldMinerConstant.BG_SKY, defaultToolkit.getImage(PRE + GoldMinerConstant.BG_SKY));
+		BG_IMAGE_MAP.put(GoldMinerConstant.BG_SKY, defaultToolkit.getImage(PRE + GoldMinerConstant.BG_SKY));
 		//背景 - 土地
-		IMAGE_MAP.put(GoldMinerConstant.BG_LAND, defaultToolkit.getImage(PRE + GoldMinerConstant.BG_LAND));
+		BG_IMAGE_MAP.put(GoldMinerConstant.BG_LAND, defaultToolkit.getImage(PRE + GoldMinerConstant.BG_LAND));
 		//小块 金子
-		IMAGE_MAP.put(GoldMinerConstant.SMALLEST_GOLD, defaultToolkit.getImage(PRE + GoldMinerConstant.SMALLEST_GOLD));
-		IMAGE_MAP.put(GoldMinerConstant.SMALL_GOLD, defaultToolkit.getImage(PRE + GoldMinerConstant.SMALL_GOLD));
+		GOLD_IMAGE_MAP.put(GoldMinerConstant.SMALLEST_GOLD,
+			defaultToolkit.getImage(PRE + GoldMinerConstant.SMALLEST_GOLD));
+		GOLD_IMAGE_MAP.put(GoldMinerConstant.SMALL_GOLD, defaultToolkit.getImage(PRE + GoldMinerConstant.SMALL_GOLD));
 		//中块 金子
-		IMAGE_MAP.put(GoldMinerConstant.MIDDLE_GOLD, defaultToolkit.getImage(PRE + GoldMinerConstant.MIDDLE_GOLD));
+		GOLD_IMAGE_MAP.put(GoldMinerConstant.MIDDLE_GOLD, defaultToolkit.getImage(PRE + GoldMinerConstant.MIDDLE_GOLD));
 		//大块 金子
-		IMAGE_MAP.put(GoldMinerConstant.BIG_GOLD, defaultToolkit.getImage(PRE + GoldMinerConstant.BIG_GOLD));
+		GOLD_IMAGE_MAP.put(GoldMinerConstant.BIG_GOLD, defaultToolkit.getImage(PRE + GoldMinerConstant.BIG_GOLD));
 
 		//小块 石头
-		IMAGE_MAP.put(GoldMinerConstant.SMALL_STONE, defaultToolkit.getImage(PRE + GoldMinerConstant.SMALL_STONE));
+		STONE_IMAGE_MAP.put(GoldMinerConstant.SMALL_STONE,
+			defaultToolkit.getImage(PRE + GoldMinerConstant.SMALL_STONE));
 		//中块 石头
-		IMAGE_MAP.put(GoldMinerConstant.MIDDLE_STONE, defaultToolkit.getImage(PRE + GoldMinerConstant.MIDDLE_STONE));
+		STONE_IMAGE_MAP.put(GoldMinerConstant.MIDDLE_STONE,
+			defaultToolkit.getImage(PRE + GoldMinerConstant.MIDDLE_STONE));
 		//大块 石头
-		IMAGE_MAP.put(GoldMinerConstant.BIG_STONE, defaultToolkit.getImage(PRE + GoldMinerConstant.BIG_STONE));
+		STONE_IMAGE_MAP.put(GoldMinerConstant.BIG_STONE, defaultToolkit.getImage(PRE + GoldMinerConstant.BIG_STONE));
 
 		//矿工
-		IMAGE_MAP.put(GoldMinerConstant.MINER, defaultToolkit.getImage(PRE + GoldMinerConstant.MINER));
+		MINER_IMAGE_MAP.put(GoldMinerConstant.MINER, defaultToolkit.getImage(PRE + GoldMinerConstant.MINER));
 		//失败的矿工
-		IMAGE_MAP.put(GoldMinerConstant.FAIL_MINER, defaultToolkit.getImage(PRE + GoldMinerConstant.FAIL_MINER));
+		MINER_IMAGE_MAP.put(GoldMinerConstant.FAIL_MINER, defaultToolkit.getImage(PRE + GoldMinerConstant.FAIL_MINER));
 		//疯狂的矿工
-		IMAGE_MAP.put(GoldMinerConstant.CRAZY_MINER, defaultToolkit.getImage(PRE + GoldMinerConstant.CRAZY_MINER));
+		MINER_IMAGE_MAP.put(GoldMinerConstant.CRAZY_MINER,
+			defaultToolkit.getImage(PRE + GoldMinerConstant.CRAZY_MINER));
 
+		//背景 - 天空
+		IMAGE_INFO_MAP.put(GoldMinerConstant.BG_SKY, Lists.newArrayList(0, 10, 1200, 200));
+		//背景 - 土地
+		IMAGE_INFO_MAP.put(GoldMinerConstant.BG_LAND, Lists.newArrayList(0, 0, 1200, 800));
+		//矿工
+		IMAGE_INFO_MAP.put(GoldMinerConstant.MINER, Lists.newArrayList(530, 60, 140, 150));
 		//小块 金子
 		IMAGE_INFO_MAP.put(GoldMinerConstant.SMALLEST_GOLD, Lists.newArrayList(35, 35));
 		IMAGE_INFO_MAP.put(GoldMinerConstant.SMALL_GOLD, Lists.newArrayList(71, 71));
@@ -70,18 +96,31 @@ public class GoldMinerPicUtil {
 
 	}
 
-	public static Image get (String key) {
-		return IMAGE_MAP.get(key);
+	public static List<Integer> getImageInfoByKey (String key) {
+		return IMAGE_INFO_MAP.get(key);
 	}
 
-	public static List<Image> getAllGold () {
-		return Lists.newArrayList(IMAGE_MAP.get(GoldMinerConstant.SMALLEST_GOLD),
-			IMAGE_MAP.get(GoldMinerConstant.SMALL_GOLD), IMAGE_MAP.get(GoldMinerConstant.MIDDLE_GOLD),
-			IMAGE_MAP.get(GoldMinerConstant.BIG_GOLD));
+	public static Map<String, Image> getAllBgImage () {
+		return BG_IMAGE_MAP;
 	}
 
-	public static List<Image> getAllStone () {
-		return Lists.newArrayList(IMAGE_MAP.get(GoldMinerConstant.SMALL_STONE),
-			IMAGE_MAP.get(GoldMinerConstant.MIDDLE_STONE), IMAGE_MAP.get(GoldMinerConstant.BIG_STONE));
+	public static List<String> getAllGoldKey () {
+		return Lists.newArrayList(GOLD_IMAGE_MAP.keySet());
+	}
+
+	public static Image getGoldByKey (String key) {
+		return GOLD_IMAGE_MAP.get(key);
+	}
+
+	public static List<String> getAllStoneKey () {
+		return Lists.newArrayList(STONE_IMAGE_MAP.keySet());
+	}
+
+	public static Image getStoneImageByKey (String key) {
+		return STONE_IMAGE_MAP.get(key);
+	}
+
+	public static Image getMinerImageByKey (String key) {
+		return MINER_IMAGE_MAP.get(key);
 	}
 }

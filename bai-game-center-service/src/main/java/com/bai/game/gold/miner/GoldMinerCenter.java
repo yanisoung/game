@@ -19,7 +19,7 @@ public class GoldMinerCenter extends JFrame {
 
 	@Override
 	public void paint (Graphics g) {
-		super.paint(g);
+		super.paintComponents(g);
 		//绘制背景图
 		WindowsDraw.paint(g);
 		//绘制矿工

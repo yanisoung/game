@@ -1,9 +1,10 @@
 package com.bai.game.gold.miner.draw;
 
 import java.awt.*;
+import java.util.List;
 
-import com.bai.game.gold.miner.constant.GoldMinerConstant;
 import com.bai.game.gold.miner.GoldMinerPicUtil;
+import com.bai.game.gold.miner.constant.GoldMinerConstant;
 
 /**
  * 矿工处理类
@@ -19,6 +20,8 @@ public class GoldMinerDraw {
 	 * @param g
 	 */
 	public static void paint (Graphics g) {
-		g.drawImage(GoldMinerPicUtil.get(GoldMinerConstant.MINER), 530, 60, 140, 150, null);
+		List<Integer> imageInfo = GoldMinerPicUtil.getImageInfoByKey(GoldMinerConstant.MINER);
+		g.drawImage(GoldMinerPicUtil.getMinerImageByKey(GoldMinerConstant.MINER), imageInfo.get(0), imageInfo.get(1),
+			imageInfo.get(2), imageInfo.get(3), null);
 	}
 }

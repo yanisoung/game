@@ -1,10 +1,12 @@
 package com.bai.game.gold.miner.draw;
 
 import java.awt.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.*;
 
-import com.bai.game.gold.miner.constant.GoldMinerConstant;
 import com.bai.game.gold.miner.GoldMinerPicUtil;
 
 /**
@@ -17,11 +19,15 @@ public class WindowsDraw {
 
 	/**
 	 * 绘制背景图片
+	 *
 	 * @param g
 	 */
 	public static void paint (Graphics g) {
-		g.drawImage(GoldMinerPicUtil.get(GoldMinerConstant.BG_LAND), 0, 0, 1200, 800, null);
-		g.drawImage(GoldMinerPicUtil.get(GoldMinerConstant.BG_SKY), 0, 10, 1200, 200, null);
+		Map<String, Image> allBgImage = GoldMinerPicUtil.getAllBgImage();
+		for (Entry<String, Image> entry : allBgImage.entrySet()) {
+			List<Integer> imageInfo = GoldMinerPicUtil.getImageInfoByKey(entry.getKey());
+			g.drawImage(entry.getValue(), imageInfo.get(0), imageInfo.get(1), imageInfo.get(2), imageInfo.get(3), null);
+		}
 	}
 
 	/**
