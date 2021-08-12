@@ -6,6 +6,7 @@ import javax.swing.*;
 
 import com.bai.game.gold.miner.draw.GoldDraw;
 import com.bai.game.gold.miner.draw.GoldMinerDraw;
+import com.bai.game.gold.miner.draw.StoneDraw;
 import com.bai.game.gold.miner.draw.WindowsDraw;
 
 /**
@@ -25,6 +26,8 @@ public class GoldMinerCenter extends JFrame {
 		GoldMinerDraw.paint(g);
 		//绘制金子
 		GoldDraw.paint(g);
+		//绘制黑石头
+		StoneDraw.paint(g);
 	}
 
 	public static void start () {
