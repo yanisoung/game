@@ -6,9 +6,11 @@ import javax.swing.*;
 
 import com.bai.game.gold.miner.draw.BgDraw;
 import com.bai.game.gold.miner.draw.GoldDraw;
-import com.bai.game.gold.miner.draw.GoldMinerDraw;
+import com.bai.game.gold.miner.draw.LineDraw;
+import com.bai.game.gold.miner.draw.MinerDraw;
 import com.bai.game.gold.miner.draw.StoneDraw;
 import com.bai.game.gold.miner.draw.WindowsDraw;
+import com.bai.game.gold.miner.listener.MouseListener;
 
 /**
  * 黄金矿工 - 处理类
@@ -31,7 +33,9 @@ public class GoldMinerCenter extends JFrame {
 		//绘制背景图
 		BgDraw.paint(graphics, null);
 		//绘制矿工
-		GoldMinerDraw.paint(graphics, null);
+		MinerDraw.paint(graphics, null);
+		//绘制线
+		LineDraw.paint(graphics);
 		//绘制黑石头
 		StoneDraw.paint(graphics, null);
 		//绘制金子
@@ -42,6 +46,18 @@ public class GoldMinerCenter extends JFrame {
 	public void start () {
 		//绘制窗口
 		WindowsDraw.paint(this);
+		//鼠标事件监听
+		MouseListener.listener(this);
+		//todo 键盘事件
+
+		while (true){
+			repaint();
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public static void main (String[] args) {

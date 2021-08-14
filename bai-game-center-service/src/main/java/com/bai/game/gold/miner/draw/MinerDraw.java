@@ -13,7 +13,8 @@ import com.bai.game.gold.miner.model.ImageInfoModel;
  * @author Bai
  * @date 2021/8/11 22:22
  */
-public class GoldMinerDraw {
+public class MinerDraw {
+
 	/**
 	 * 绘制矿工
 	 *
