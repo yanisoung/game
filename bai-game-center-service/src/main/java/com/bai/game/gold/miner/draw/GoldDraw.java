@@ -30,7 +30,9 @@ public class GoldDraw {
 			Image image = GoldMinerPicUtil.getGoldByKey(key);
 			int x = 10 + (int)(Math.random() * (1200 - 10 + 1));
 			int y = 210 + (int)(Math.random() * (790 - 210 + 1));
-			g.drawImage(image, x, y, imageObserver);
+			//图片宽 高
+			List<Integer> imageInfoByKey = GoldMinerPicUtil.getImageInfoByKey(key);
+			g.drawImage(image, x, y, imageInfoByKey.get(0), imageInfoByKey.get(1), imageObserver);
 		}
 	}
 }

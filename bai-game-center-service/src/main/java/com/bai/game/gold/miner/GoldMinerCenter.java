@@ -20,15 +20,18 @@ public class GoldMinerCenter extends JFrame {
 
 	@Override
 	public void paint (Graphics g) {
-		super.paintComponents(g);
+		//绘制新的画布 将所有图片绘制到新画布上
+		Image image = this.createImage(1200, 800);
+		Graphics graphics = image.getGraphics();
 		//绘制背景图
-		BgsDraw.paint(g, this);
+		BgsDraw.paint(graphics, this);
 		//绘制矿工
-		GoldMinerDraw.paint(g, this);
+		GoldMinerDraw.paint(graphics, this);
 		//绘制黑石头
-		StoneDraw.paint(g, this);
+		StoneDraw.paint(graphics, this);
 		//绘制金子
-		GoldDraw.paint(g, this);
+		GoldDraw.paint(graphics, this);
+		g.drawImage(image, 0, 0, this);
 	}
 
 	public void start () {
