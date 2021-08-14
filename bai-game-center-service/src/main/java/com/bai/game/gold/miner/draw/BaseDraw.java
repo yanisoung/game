@@ -58,11 +58,11 @@ public class BaseDraw {
 	}
 
 	public static Integer x () {
-		return (int)(Math.random() * 700);
+		return 10 + (int)(Math.random() * (1200 - 10 + 1));
 	}
 
 	public static Integer y () {
-		return (int)(Math.random() * 550 + 300);
+		return 200 + (int)(Math.random() * (650 - 200 + 1));
 	}
 
 	/**
