@@ -3,10 +3,10 @@ package com.bai.game.gold.miner.draw;
 import java.awt.*;
 import java.awt.image.ImageObserver;
 import java.util.List;
-import java.util.Random;
 
-import com.bai.game.gold.miner.GoldMinerCenter;
 import com.bai.game.gold.miner.GoldMinerPicUtil;
+import com.bai.game.gold.miner.model.ImageInfoModel;
+import org.apache.commons.collections.CollectionUtils;
 
 /**
  * 黑石头 处理类
@@ -14,7 +14,7 @@ import com.bai.game.gold.miner.GoldMinerPicUtil;
  * @author Bai
  * @date 2021/8/12 22:17
  */
-public class StoneDraw {
+public class StoneDraw extends BaseDraw {
 
 	/**
 	 * 随机刷新金子
@@ -23,17 +23,13 @@ public class StoneDraw {
 	 * @param imageObserver
 	 */
 	public static void paint (Graphics g, ImageObserver imageObserver) {
-		List<String> allStone = GoldMinerPicUtil.getAllStoneKey();
-		Random random = new Random();
-		int stoneCount = 5;
-		for (int i = 0; i < stoneCount; i++) {
-			String key = allStone.get(random.nextInt(allStone.size() - 1));
-			Image image = GoldMinerPicUtil.getStoneImageByKey(key);
-			int x = 10 + (int)(Math.random() * (1200 - 10 + 1));
-			int y = 210 + (int)(Math.random() * (790 - 210 + 1));
-			//图片宽 高
-			List<Integer> imageInfo = GoldMinerPicUtil.getImageInfoByKey(key);
-			g.drawImage(image, x, y, imageInfo.get(0), imageInfo.get(1), imageObserver);
+		String key = "StoneDraw";
+		List<ImageInfoModel> allImages = getImageInfoModel(key);
+		if (CollectionUtils.isEmpty(allImages)) {
+			allImages = buildAllGoldOrStone(GoldMinerPicUtil.getAllStone());
 		}
+		IMAGE_INFO_MAP.put(key, allImages);
+		doPaint(g, imageObserver, allImages);
 	}
+
 }

@@ -1,11 +1,11 @@
 package com.bai.game.gold.miner;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.bai.game.gold.miner.constant.GoldMinerConstant;
+import com.bai.game.gold.miner.model.ImageInfoModel;
 import com.google.common.collect.Lists;
 
 /**
@@ -19,115 +19,97 @@ public class GoldMinerPicUtil {
 	/**
 	 * 背景集合
 	 */
-	public static Map<String, Image> BG_IMAGE_MAP = new HashMap<>();
+	public static Map<String, ImageInfoModel> BG_IMAGE_MAP = new HashMap<>();
 
 	/**
 	 * 金子集合
 	 */
-	public static Map<String, Image> GOLD_IMAGE_MAP = new HashMap<>();
+	public static Map<String, ImageInfoModel> GOLD_IMAGE_MAP = new HashMap<>();
 
 	/**
 	 * 石头集合
 	 */
-	public static Map<String, Image> STONE_IMAGE_MAP = new HashMap<>();
+	public static Map<String, ImageInfoModel> STONE_IMAGE_MAP = new HashMap<>();
 
 	/**
 	 * 矿工集合
 	 */
-	public static Map<String, Image> MINER_IMAGE_MAP = new HashMap<>();
-
-	/**
-	 * 图片宽度集合
-	 */
-	public static Map<String, List<Integer>> IMAGE_INFO_MAP = new HashMap<>();
+	public static Map<String, ImageInfoModel> MINER_IMAGE_MAP = new HashMap<>();
 
 	static {
 		//背景 - 天空
 		BG_IMAGE_MAP.put(GoldMinerConstant.BG_SKY,
-			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.BG_SKY));
+			ImageInfoModel.build(GoldMinerConstant.BG_SKY, PRE + GoldMinerConstant.BG_SKY, 1200, 200, 0, 10));
+
 		//背景 - 土地
 		BG_IMAGE_MAP.put(GoldMinerConstant.BG_LAND,
-			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.BG_LAND));
+			ImageInfoModel.build(GoldMinerConstant.BG_LAND, PRE + GoldMinerConstant.BG_LAND, 1200, 800, 0, 0));
+
 		//小块 金子
 		GOLD_IMAGE_MAP.put(GoldMinerConstant.SMALLEST_GOLD,
-			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.SMALLEST_GOLD));
+			ImageInfoModel.buildImageInfo(GoldMinerConstant.SMALLEST_GOLD, PRE + GoldMinerConstant.BG_LAND, 35, 35));
+
 		GOLD_IMAGE_MAP.put(GoldMinerConstant.SMALL_GOLD,
-			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.SMALL_GOLD));
+			ImageInfoModel.buildImageInfo(GoldMinerConstant.SMALL_GOLD, PRE + GoldMinerConstant.SMALL_GOLD, 71, 71));
+
 		//中块 金子
 		GOLD_IMAGE_MAP.put(GoldMinerConstant.MIDDLE_GOLD,
-			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.MIDDLE_GOLD));
+			ImageInfoModel.buildImageInfo(GoldMinerConstant.MIDDLE_GOLD, PRE + GoldMinerConstant.MIDDLE_GOLD, 140,
+				140));
+
 		//大块 金子
 		GOLD_IMAGE_MAP.put(GoldMinerConstant.BIG_GOLD,
-			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.BIG_GOLD));
+			ImageInfoModel.buildImageInfo(GoldMinerConstant.BIG_GOLD, PRE + GoldMinerConstant.BIG_GOLD, 174, 174));
 
 		//小块 石头
 		STONE_IMAGE_MAP.put(GoldMinerConstant.SMALL_STONE,
-			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.SMALL_STONE));
+			ImageInfoModel.buildImageInfo(GoldMinerConstant.SMALL_STONE, PRE + GoldMinerConstant.SMALL_STONE, 70, 70));
+
 		//中块 石头
 		STONE_IMAGE_MAP.put(GoldMinerConstant.MIDDLE_STONE,
-			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.MIDDLE_STONE));
+			ImageInfoModel.buildImageInfo(GoldMinerConstant.MIDDLE_STONE, PRE + GoldMinerConstant.MIDDLE_STONE, 140,
+				140));
+
 		//大块 石头
 		STONE_IMAGE_MAP.put(GoldMinerConstant.BIG_STONE,
-			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.BIG_STONE));
+			ImageInfoModel.buildImageInfo(GoldMinerConstant.BIG_STONE, PRE + GoldMinerConstant.BIG_STONE, 174, 174));
 
 		//矿工
 		MINER_IMAGE_MAP.put(GoldMinerConstant.MINER,
-			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.MINER));
+			ImageInfoModel.build(GoldMinerConstant.MINER, PRE + GoldMinerConstant.MINER, 140, 150, 530, 60));
+
 		//失败的矿工
 		MINER_IMAGE_MAP.put(GoldMinerConstant.FAIL_MINER,
-			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.FAIL_MINER));
+			ImageInfoModel.build(GoldMinerConstant.FAIL_MINER, PRE + GoldMinerConstant.FAIL_MINER, 140, 150, 530, 60));
+
 		//疯狂的矿工
 		MINER_IMAGE_MAP.put(GoldMinerConstant.CRAZY_MINER,
-			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.CRAZY_MINER));
-
-		//背景 - 天空
-		IMAGE_INFO_MAP.put(GoldMinerConstant.BG_SKY, Lists.newArrayList(0, 10, 1200, 200));
-		//背景 - 土地
-		IMAGE_INFO_MAP.put(GoldMinerConstant.BG_LAND, Lists.newArrayList(0, 0, 1200, 800));
-		//矿工
-		IMAGE_INFO_MAP.put(GoldMinerConstant.MINER, Lists.newArrayList(530, 60, 140, 150));
-		//小块 金子
-		IMAGE_INFO_MAP.put(GoldMinerConstant.SMALLEST_GOLD, Lists.newArrayList(35, 35));
-		IMAGE_INFO_MAP.put(GoldMinerConstant.SMALL_GOLD, Lists.newArrayList(71, 71));
-		//中块 金子
-		IMAGE_INFO_MAP.put(GoldMinerConstant.MIDDLE_GOLD, Lists.newArrayList(140, 140));
-		//大块 金子
-		IMAGE_INFO_MAP.put(GoldMinerConstant.BIG_GOLD, Lists.newArrayList(174, 174));
-
-		//小块 石头
-		IMAGE_INFO_MAP.put(GoldMinerConstant.SMALL_STONE, Lists.newArrayList(70, 70));
-		//中块 石头
-		IMAGE_INFO_MAP.put(GoldMinerConstant.MIDDLE_STONE, Lists.newArrayList(140, 140));
-		//大块 石头
-		IMAGE_INFO_MAP.put(GoldMinerConstant.BIG_STONE, Lists.newArrayList(174, 174));
+			ImageInfoModel.build(GoldMinerConstant.CRAZY_MINER, PRE + GoldMinerConstant.CRAZY_MINER, 140, 150, 530,
+				60));
 
 	}
 
-	public static List<Integer> getImageInfoByKey (String key) {
-		return IMAGE_INFO_MAP.get(key);
-	}
-
-	public static Map<String, Image> getAllBgImage () {
+	public static Map<String, ImageInfoModel> getAllBgImage () {
 		return BG_IMAGE_MAP;
 	}
 
-	public static List<String> getAllGoldKey () {
-		return Lists.newArrayList(GOLD_IMAGE_MAP.keySet());
+	public static List<ImageInfoModel> getAllGold () {
+		return Lists.newArrayList(GOLD_IMAGE_MAP.values());
 	}
 
-	public static Image getGoldByKey (String key) {
+	public static ImageInfoModel getGoldByKey (String key) {
 		return GOLD_IMAGE_MAP.get(key);
 	}
 
-	public static List<String> getAllStoneKey () {
-		return Lists.newArrayList(STONE_IMAGE_MAP.keySet());
+	public static List<ImageInfoModel> getAllStone () {
+		return Lists.newArrayList(STONE_IMAGE_MAP.values());
 	}
 
-	public static Image getStoneImageByKey (String key) {
+	public static ImageInfoModel getStoneImageByKey (String key) {
 		return STONE_IMAGE_MAP.get(key);
 	}
 
-	public static Image getMinerImageByKey (String key) {
+	public static ImageInfoModel getMinerImageByKey (String key) {
 		return MINER_IMAGE_MAP.get(key);
 	}
 }

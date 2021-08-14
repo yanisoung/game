@@ -2,10 +2,10 @@ package com.bai.game.gold.miner.draw;
 
 import java.awt.*;
 import java.awt.image.ImageObserver;
-import java.util.List;
 
 import com.bai.game.gold.miner.GoldMinerPicUtil;
 import com.bai.game.gold.miner.constant.GoldMinerConstant;
+import com.bai.game.gold.miner.model.ImageInfoModel;
 
 /**
  * 矿工处理类
@@ -14,7 +14,6 @@ import com.bai.game.gold.miner.constant.GoldMinerConstant;
  * @date 2021/8/11 22:22
  */
 public class GoldMinerDraw {
-
 	/**
 	 * 绘制矿工
 	 *
@@ -22,8 +21,8 @@ public class GoldMinerDraw {
 	 * @param imageObserver
 	 */
 	public static void paint (Graphics g, ImageObserver imageObserver) {
-		List<Integer> imageInfo = GoldMinerPicUtil.getImageInfoByKey(GoldMinerConstant.MINER);
-		g.drawImage(GoldMinerPicUtil.getMinerImageByKey(GoldMinerConstant.MINER), imageInfo.get(0), imageInfo.get(1),
-			imageInfo.get(2), imageInfo.get(3), imageObserver);
+		ImageInfoModel imageInfoModel = GoldMinerPicUtil.getMinerImageByKey(GoldMinerConstant.MINER);
+		g.drawImage(imageInfoModel.getImage(), imageInfoModel.getX(), imageInfoModel.getY(), imageInfoModel.getWidth(),
+			imageInfoModel.getHeight(), imageObserver);
 	}
 }

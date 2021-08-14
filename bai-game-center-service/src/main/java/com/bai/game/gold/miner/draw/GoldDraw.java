@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Random;
 
 import com.bai.game.gold.miner.GoldMinerPicUtil;
+import com.bai.game.gold.miner.model.ImageInfoModel;
+import com.google.common.collect.Lists;
+import org.apache.commons.collections.CollectionUtils;
 
 /**
  * 金子 处理类
@@ -13,7 +16,7 @@ import com.bai.game.gold.miner.GoldMinerPicUtil;
  * @author Bai
  * @date 2021/8/11 22:16
  */
-public class GoldDraw {
+public class GoldDraw extends BaseDraw {
 
 	/**
 	 * 随机刷新金子
@@ -21,18 +24,14 @@ public class GoldDraw {
 	 * @param g
 	 */
 	public static void paint (Graphics g, ImageObserver imageObserver) {
-		List<String> allGoldKey = GoldMinerPicUtil.getAllGoldKey();
-		//todo 解决 图片重叠 &gif图片展示失败 白
-		Random random = new Random();
-		int goldCount = 10;
-		for (int i = 0; i < goldCount; i++) {
-			String key = allGoldKey.get(random.nextInt(allGoldKey.size() - 1));
-			Image image = GoldMinerPicUtil.getGoldByKey(key);
-			int x = 10 + (int)(Math.random() * (1200 - 10 + 1));
-			int y = 210 + (int)(Math.random() * (790 - 210 + 1));
-			//图片宽 高
-			List<Integer> imageInfo = GoldMinerPicUtil.getImageInfoByKey(key);
-			g.drawImage(image, x, y, imageInfo.get(0), imageInfo.get(1), imageObserver);
+		String key = "GoldDraw";
+		List<ImageInfoModel> allImages = getImageInfoModel(key);
+		if (CollectionUtils.isEmpty(allImages)) {
+			allImages = buildAllGoldOrStone(GoldMinerPicUtil.getAllGold());
+			IMAGE_INFO_MAP.put(key, allImages);
 		}
+		doPaint(g, imageObserver, allImages);
 	}
+
+
 }
