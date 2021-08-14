@@ -54,12 +54,12 @@ public class GoldMinerPicUtil {
 
 		//中块 金子
 		GOLD_IMAGE_MAP.put(GoldMinerConstant.MIDDLE_GOLD,
-			ImageInfoModel.buildImageInfo(GoldMinerConstant.MIDDLE_GOLD, PRE + GoldMinerConstant.MIDDLE_GOLD, 140,
-				140));
+			ImageInfoModel.buildImageInfo(GoldMinerConstant.MIDDLE_GOLD, PRE + GoldMinerConstant.MIDDLE_GOLD, 80,
+				80));
 
 		//大块 金子
 		GOLD_IMAGE_MAP.put(GoldMinerConstant.BIG_GOLD,
-			ImageInfoModel.buildImageInfo(GoldMinerConstant.BIG_GOLD, PRE + GoldMinerConstant.BIG_GOLD, 174, 174));
+			ImageInfoModel.buildImageInfo(GoldMinerConstant.BIG_GOLD, PRE + GoldMinerConstant.BIG_GOLD, 114, 114));
 
 		//小块 石头
 		STONE_IMAGE_MAP.put(GoldMinerConstant.SMALL_STONE,
@@ -67,12 +67,12 @@ public class GoldMinerPicUtil {
 
 		//中块 石头
 		STONE_IMAGE_MAP.put(GoldMinerConstant.MIDDLE_STONE,
-			ImageInfoModel.buildImageInfo(GoldMinerConstant.MIDDLE_STONE, PRE + GoldMinerConstant.MIDDLE_STONE, 140,
-				140));
+			ImageInfoModel.buildImageInfo(GoldMinerConstant.MIDDLE_STONE, PRE + GoldMinerConstant.MIDDLE_STONE, 80,
+				80));
 
 		//大块 石头
 		STONE_IMAGE_MAP.put(GoldMinerConstant.BIG_STONE,
-			ImageInfoModel.buildImageInfo(GoldMinerConstant.BIG_STONE, PRE + GoldMinerConstant.BIG_STONE, 174, 174));
+			ImageInfoModel.buildImageInfo(GoldMinerConstant.BIG_STONE, PRE + GoldMinerConstant.BIG_STONE, 114, 114));
 
 		//矿工
 		MINER_IMAGE_MAP.put(GoldMinerConstant.MINER,
