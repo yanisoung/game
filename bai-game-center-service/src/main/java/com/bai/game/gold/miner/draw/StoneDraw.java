@@ -2,11 +2,6 @@ package com.bai.game.gold.miner.draw;
 
 import java.awt.*;
 import java.awt.image.ImageObserver;
-import java.util.List;
-
-import com.bai.game.gold.miner.GoldMinerPicUtil;
-import com.bai.game.gold.miner.model.ImageInfoModel;
-import org.apache.commons.collections.CollectionUtils;
 
 /**
  * 黑石头 处理类
@@ -23,13 +18,7 @@ public class StoneDraw extends BaseDraw {
 	 * @param imageObserver
 	 */
 	public static void paint (Graphics g, ImageObserver imageObserver) {
-		String key = "StoneDraw";
-		List<ImageInfoModel> allImages = getImageInfoModel(key);
-		if (CollectionUtils.isEmpty(allImages)) {
-			allImages = buildAllGoldOrStone(GoldMinerPicUtil.getAllStone(), 5);
-		}
-		IMAGE_INFO_MAP.put(key, allImages);
-		doPaint(g, imageObserver, allImages);
+		paint("StoneDraw", 5, g, imageObserver);
 	}
 
 }

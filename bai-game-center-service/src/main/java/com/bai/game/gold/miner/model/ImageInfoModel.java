@@ -73,4 +73,17 @@ public class ImageInfoModel {
 		return imageInfoModel;
 	}
 
+	/**
+	 * 获取当前所有坐标可构建成的矩形
+	 *
+	 * @return
+	 */
+	public Rectangle getRec () {
+		return new Rectangle(x, y, width, height);
+	}
+
+	public Rectangle getRec (Integer x, Integer y) {
+		return new Rectangle(x, y, width, height);
+	}
+
 }

@@ -54,8 +54,7 @@ public class GoldMinerPicUtil {
 
 		//中块 金子
 		GOLD_IMAGE_MAP.put(GoldMinerConstant.MIDDLE_GOLD,
-			ImageInfoModel.buildImageInfo(GoldMinerConstant.MIDDLE_GOLD, PRE + GoldMinerConstant.MIDDLE_GOLD, 80,
-				80));
+			ImageInfoModel.buildImageInfo(GoldMinerConstant.MIDDLE_GOLD, PRE + GoldMinerConstant.MIDDLE_GOLD, 80, 80));
 
 		//大块 金子
 		GOLD_IMAGE_MAP.put(GoldMinerConstant.BIG_GOLD,
@@ -111,5 +110,16 @@ public class GoldMinerPicUtil {
 
 	public static ImageInfoModel getMinerImageByKey (String key) {
 		return MINER_IMAGE_MAP.get(key);
+	}
+
+	public static List<ImageInfoModel> getByKey (String key) {
+		switch (key) {
+		case "StoneDraw":
+			return Lists.newArrayList(STONE_IMAGE_MAP.values());
+		case "GoldDraw":
+			return Lists.newArrayList(GOLD_IMAGE_MAP.values());
+		default:
+			return null;
+		}
 	}
 }

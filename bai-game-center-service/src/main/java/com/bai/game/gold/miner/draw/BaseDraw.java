@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import com.bai.game.gold.miner.GoldMinerPicUtil;
 import com.bai.game.gold.miner.model.ImageInfoModel;
 import com.google.common.collect.Lists;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 
 /**
@@ -27,21 +29,55 @@ public class BaseDraw {
 		List<ImageInfoModel> allImages = Lists.newArrayList();
 		Random random = new Random();
 		for (int i = 0; i < count; i++) {
-			ImageInfoModel imageInfoModel = orImages.get(random.nextInt(orImages.size() - 1));
-			int x = 10 + (int)(Math.random() * (1100 - 10 + 1));
-			int y = 200 + (int)(Math.random() * (650 - 200 + 1));
-			allImages.add(buildImageInfo(imageInfoModel, x, y));
+			ImageInfoModel out = new ImageInfoModel();
+			BeanUtils.copyProperties(orImages.get(random.nextInt(orImages.size() - 1)), out);
+			List<ImageInfoModel> all = Lists.newArrayList();
+			IMAGE_INFO_MAP.values().forEach(all::addAll);
+			buildXYInfo(all, out);
+			allImages.add(out);
 		}
 		return allImages;
 	}
 
-	public static ImageInfoModel buildImageInfo (ImageInfoModel source, Integer x, Integer y) {
-		ImageInfoModel out = new ImageInfoModel();
-		BeanUtils.copyProperties(source, out);
+	public static void buildXYInfo (List<ImageInfoModel> all, ImageInfoModel outModel) {
+		Integer x = x();
+		Integer y = y();
+		for (ImageInfoModel infoModel : all) {
+			if (null == infoModel.getX() || null == infoModel.getY()) {
+				continue;
+			}
+			Rectangle rec = infoModel.getRec();
+			Rectangle outRec = outModel.getRec(x, y);
+			if (rec.intersects(outRec) || outRec.intersects(rec)) {
+				buildXYInfo(all, outModel);
+			}
+		}
 		//构建坐标等信息
-		out.setX(x);
-		out.setY(y);
-		return out;
+		outModel.setX(x);
+		outModel.setY(y);
+	}
+
+	public static Integer x () {
+		return (int)(Math.random() * 700);
+	}
+
+	public static Integer y () {
+		return (int)(Math.random() * 550 + 300);
+	}
+
+	/**
+	 * 随机刷新金子or石头
+	 *
+	 * @param g
+	 * @param imageObserver
+	 */
+	public static void paint (String key, Integer count, Graphics g, ImageObserver imageObserver) {
+		List<ImageInfoModel> allImages = getImageInfoModel(key);
+		if (CollectionUtils.isEmpty(allImages)) {
+			allImages = buildAllGoldOrStone(GoldMinerPicUtil.getByKey(key), count);
+		}
+		IMAGE_INFO_MAP.put(key, allImages);
+		doPaint(g, imageObserver, allImages);
 	}
 
 	public static void doPaint (Graphics g, ImageObserver imageObserver, List<ImageInfoModel> allImages) {
