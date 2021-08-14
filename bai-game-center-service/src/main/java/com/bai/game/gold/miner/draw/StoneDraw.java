@@ -31,7 +31,9 @@ public class StoneDraw {
 			Image image = GoldMinerPicUtil.getStoneImageByKey(key);
 			int x = 10 + (int)(Math.random() * (1200 - 10 + 1));
 			int y = 210 + (int)(Math.random() * (790 - 210 + 1));
-			g.drawImage(image, x, y, imageObserver);
+			//图片宽 高
+			List<Integer> imageInfo = GoldMinerPicUtil.getImageInfoByKey(key);
+			g.drawImage(image, x, y, imageInfo.get(0), imageInfo.get(1), imageObserver);
 		}
 	}
 }

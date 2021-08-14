@@ -42,36 +42,43 @@ public class GoldMinerPicUtil {
 	public static Map<String, List<Integer>> IMAGE_INFO_MAP = new HashMap<>();
 
 	static {
-		Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
 		//背景 - 天空
-		BG_IMAGE_MAP.put(GoldMinerConstant.BG_SKY, defaultToolkit.getImage(PRE + GoldMinerConstant.BG_SKY));
+		BG_IMAGE_MAP.put(GoldMinerConstant.BG_SKY,
+			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.BG_SKY));
 		//背景 - 土地
-		BG_IMAGE_MAP.put(GoldMinerConstant.BG_LAND, defaultToolkit.getImage(PRE + GoldMinerConstant.BG_LAND));
+		BG_IMAGE_MAP.put(GoldMinerConstant.BG_LAND,
+			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.BG_LAND));
 		//小块 金子
 		GOLD_IMAGE_MAP.put(GoldMinerConstant.SMALLEST_GOLD,
-			defaultToolkit.getImage(PRE + GoldMinerConstant.SMALLEST_GOLD));
-		GOLD_IMAGE_MAP.put(GoldMinerConstant.SMALL_GOLD, defaultToolkit.getImage(PRE + GoldMinerConstant.SMALL_GOLD));
+			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.SMALLEST_GOLD));
+		GOLD_IMAGE_MAP.put(GoldMinerConstant.SMALL_GOLD,
+			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.SMALL_GOLD));
 		//中块 金子
-		GOLD_IMAGE_MAP.put(GoldMinerConstant.MIDDLE_GOLD, defaultToolkit.getImage(PRE + GoldMinerConstant.MIDDLE_GOLD));
+		GOLD_IMAGE_MAP.put(GoldMinerConstant.MIDDLE_GOLD,
+			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.MIDDLE_GOLD));
 		//大块 金子
-		GOLD_IMAGE_MAP.put(GoldMinerConstant.BIG_GOLD, defaultToolkit.getImage(PRE + GoldMinerConstant.BIG_GOLD));
+		GOLD_IMAGE_MAP.put(GoldMinerConstant.BIG_GOLD,
+			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.BIG_GOLD));
 
 		//小块 石头
 		STONE_IMAGE_MAP.put(GoldMinerConstant.SMALL_STONE,
-			defaultToolkit.getImage(PRE + GoldMinerConstant.SMALL_STONE));
+			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.SMALL_STONE));
 		//中块 石头
 		STONE_IMAGE_MAP.put(GoldMinerConstant.MIDDLE_STONE,
-			defaultToolkit.getImage(PRE + GoldMinerConstant.MIDDLE_STONE));
+			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.MIDDLE_STONE));
 		//大块 石头
-		STONE_IMAGE_MAP.put(GoldMinerConstant.BIG_STONE, defaultToolkit.getImage(PRE + GoldMinerConstant.BIG_STONE));
+		STONE_IMAGE_MAP.put(GoldMinerConstant.BIG_STONE,
+			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.BIG_STONE));
 
 		//矿工
-		MINER_IMAGE_MAP.put(GoldMinerConstant.MINER, defaultToolkit.getImage(PRE + GoldMinerConstant.MINER));
+		MINER_IMAGE_MAP.put(GoldMinerConstant.MINER,
+			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.MINER));
 		//失败的矿工
-		MINER_IMAGE_MAP.put(GoldMinerConstant.FAIL_MINER, defaultToolkit.getImage(PRE + GoldMinerConstant.FAIL_MINER));
+		MINER_IMAGE_MAP.put(GoldMinerConstant.FAIL_MINER,
+			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.FAIL_MINER));
 		//疯狂的矿工
 		MINER_IMAGE_MAP.put(GoldMinerConstant.CRAZY_MINER,
-			defaultToolkit.getImage(PRE + GoldMinerConstant.CRAZY_MINER));
+			Toolkit.getDefaultToolkit().getImage(PRE + GoldMinerConstant.CRAZY_MINER));
 
 		//背景 - 天空
 		IMAGE_INFO_MAP.put(GoldMinerConstant.BG_SKY, Lists.newArrayList(0, 10, 1200, 200));

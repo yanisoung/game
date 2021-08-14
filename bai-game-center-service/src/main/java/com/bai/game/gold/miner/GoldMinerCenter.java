@@ -24,14 +24,14 @@ public class GoldMinerCenter extends JFrame {
 		Image image = this.createImage(1200, 800);
 		Graphics graphics = image.getGraphics();
 		//绘制背景图
-		BgsDraw.paint(graphics, this);
+		BgsDraw.paint(graphics, null);
 		//绘制矿工
-		GoldMinerDraw.paint(graphics, this);
+		GoldMinerDraw.paint(graphics, null);
 		//绘制黑石头
-		StoneDraw.paint(graphics, this);
+		StoneDraw.paint(graphics, null);
 		//绘制金子
 		GoldDraw.paint(graphics, this);
-		g.drawImage(image, 0, 0, this);
+		g.drawImage(image, 0, 0, null);
 	}
 
 	public void start () {
