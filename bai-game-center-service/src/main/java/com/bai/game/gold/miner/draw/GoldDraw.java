@@ -27,11 +27,10 @@ public class GoldDraw extends BaseDraw {
 		String key = "GoldDraw";
 		List<ImageInfoModel> allImages = getImageInfoModel(key);
 		if (CollectionUtils.isEmpty(allImages)) {
-			allImages = buildAllGoldOrStone(GoldMinerPicUtil.getAllGold());
+			allImages = buildAllGoldOrStone(GoldMinerPicUtil.getAllGold(), 10);
 			IMAGE_INFO_MAP.put(key, allImages);
 		}
 		doPaint(g, imageObserver, allImages);
 	}
-
 
 }

@@ -9,6 +9,7 @@ import java.util.Random;
 
 import com.bai.game.gold.miner.model.ImageInfoModel;
 import com.google.common.collect.Lists;
+import org.springframework.beans.BeanUtils;
 
 /**
  * @author Bai
@@ -22,24 +23,25 @@ public class BaseDraw {
 		return IMAGE_INFO_MAP.get(key);
 	}
 
-	public static List<ImageInfoModel> buildAllGoldOrStone (List<ImageInfoModel> orImages) {
+	public static List<ImageInfoModel> buildAllGoldOrStone (List<ImageInfoModel> orImages, Integer count) {
 		List<ImageInfoModel> allImages = Lists.newArrayList();
 		Random random = new Random();
-		int goldCount = 10;
-		for (int i = 0; i < goldCount; i++) {
+		for (int i = 0; i < count; i++) {
 			ImageInfoModel imageInfoModel = orImages.get(random.nextInt(orImages.size() - 1));
 			int x = 10 + (int)(Math.random() * (1100 - 10 + 1));
-			int y = 210 + (int)(Math.random() * (650 - 200 + 1));
+			int y = 200 + (int)(Math.random() * (650 - 200 + 1));
 			allImages.add(buildImageInfo(imageInfoModel, x, y));
 		}
 		return allImages;
 	}
 
-	public static ImageInfoModel buildImageInfo (ImageInfoModel imageInfoModel, Integer x, Integer y) {
+	public static ImageInfoModel buildImageInfo (ImageInfoModel source, Integer x, Integer y) {
+		ImageInfoModel out = new ImageInfoModel();
+		BeanUtils.copyProperties(source, out);
 		//构建坐标等信息
-		imageInfoModel.setX(x);
-		imageInfoModel.setY(y);
-		return imageInfoModel;
+		out.setX(x);
+		out.setY(y);
+		return out;
 	}
 
 	public static void doPaint (Graphics g, ImageObserver imageObserver, List<ImageInfoModel> allImages) {

@@ -26,7 +26,7 @@ public class StoneDraw extends BaseDraw {
 		String key = "StoneDraw";
 		List<ImageInfoModel> allImages = getImageInfoModel(key);
 		if (CollectionUtils.isEmpty(allImages)) {
-			allImages = buildAllGoldOrStone(GoldMinerPicUtil.getAllStone());
+			allImages = buildAllGoldOrStone(GoldMinerPicUtil.getAllStone(), 5);
 		}
 		IMAGE_INFO_MAP.put(key, allImages);
 		doPaint(g, imageObserver, allImages);
