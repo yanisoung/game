@@ -1,9 +1,11 @@
 package com.bai.game.gold.miner.draw;
 
 import java.awt.*;
+import java.awt.image.ImageObserver;
 import java.util.List;
 import java.util.Random;
 
+import com.bai.game.gold.miner.GoldMinerCenter;
 import com.bai.game.gold.miner.GoldMinerPicUtil;
 
 /**
@@ -18,8 +20,9 @@ public class StoneDraw {
 	 * 随机刷新金子
 	 *
 	 * @param g
+	 * @param imageObserver
 	 */
-	public static void paint (Graphics g) {
+	public static void paint (Graphics g, ImageObserver imageObserver) {
 		List<String> allStone = GoldMinerPicUtil.getAllStoneKey();
 		Random random = new Random();
 		int stoneCount = 5;
@@ -28,7 +31,7 @@ public class StoneDraw {
 			Image image = GoldMinerPicUtil.getStoneImageByKey(key);
 			int x = 10 + (int)(Math.random() * (1200 - 10 + 1));
 			int y = 210 + (int)(Math.random() * (790 - 210 + 1));
-			g.drawImage(image, x, y, null);
+			g.drawImage(image, x, y, imageObserver);
 		}
 	}
 }

@@ -1,13 +1,6 @@
 package com.bai.game.gold.miner.draw;
 
-import java.awt.*;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import javax.swing.*;
-
-import com.bai.game.gold.miner.GoldMinerPicUtil;
 
 /**
  * 背景窗口处理类
@@ -18,22 +11,9 @@ import com.bai.game.gold.miner.GoldMinerPicUtil;
 public class WindowsDraw {
 
 	/**
-	 * 绘制背景图片
-	 *
-	 * @param g
-	 */
-	public static void paint (Graphics g) {
-		Map<String, Image> allBgImage = GoldMinerPicUtil.getAllBgImage();
-		for (Entry<String, Image> entry : allBgImage.entrySet()) {
-			List<Integer> imageInfo = GoldMinerPicUtil.getImageInfoByKey(entry.getKey());
-			g.drawImage(entry.getValue(), imageInfo.get(0), imageInfo.get(1), imageInfo.get(2), imageInfo.get(3), null);
-		}
-	}
-
-	/**
 	 * 绘制窗口
 	 */
-	public static void drawWindows (JFrame jFrame) {
+	public static void paint (JFrame jFrame) {
 		//创建标题名
 		jFrame.setTitle("黄金矿工");
 		// 窗口默认是不可见的
