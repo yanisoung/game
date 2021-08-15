@@ -5,7 +5,7 @@ import java.awt.image.ImageObserver;
 
 import com.bai.game.gold.miner.GoldMinerPicUtil;
 import com.bai.game.gold.miner.constant.GoldMinerConstant;
-import com.bai.game.gold.miner.model.ImageInfoModel;
+import com.bai.game.gold.miner.model.ObjectInfoModel;
 
 /**
  * 矿工处理类
@@ -22,8 +22,8 @@ public class MinerDraw {
 	 * @param imageObserver
 	 */
 	public static void paint (Graphics g, ImageObserver imageObserver) {
-		ImageInfoModel imageInfoModel = GoldMinerPicUtil.getMinerImageByKey(GoldMinerConstant.MINER);
-		g.drawImage(imageInfoModel.getImage(), imageInfoModel.getX(), imageInfoModel.getY(), imageInfoModel.getWidth(),
-			imageInfoModel.getHeight(), imageObserver);
+		ObjectInfoModel objectInfoModel = GoldMinerPicUtil.getMinerImageByKey(GoldMinerConstant.MINER);
+		g.drawImage(objectInfoModel.getImage(), objectInfoModel.getX(), objectInfoModel.getY(), objectInfoModel.getWidth(),
+			objectInfoModel.getHeight(), imageObserver);
 	}
 }

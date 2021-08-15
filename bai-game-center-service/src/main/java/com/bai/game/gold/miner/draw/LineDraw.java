@@ -8,7 +8,7 @@ import java.awt.Stroke;
 import java.util.List;
 import java.util.Objects;
 
-import com.bai.game.gold.miner.model.ImageInfoModel;
+import com.bai.game.gold.miner.model.ObjectInfoModel;
 import org.apache.commons.collections.CollectionUtils;
 
 /**
@@ -84,7 +84,7 @@ public class LineDraw extends BaseDraw {
 			} else if (n > 0.9) {
 				dir = -1;
 			}
-			n = n + 0.005 * dir;
+			n = n + 0.01 * dir;
 			drawLine(g);
 			break;
 		case 1:
@@ -135,7 +135,7 @@ public class LineDraw extends BaseDraw {
 	}
 
 	private static void stoneCheck () {
-		List<ImageInfoModel> allStone = StoneDraw.getAllStone();
+		List<ObjectInfoModel> allStone = StoneDraw.getAllStone();
 		if (CollectionUtils.isEmpty(allStone)) {
 			return;
 		}
@@ -143,17 +143,19 @@ public class LineDraw extends BaseDraw {
 			//当触碰到石头时，收回
 			if (endX > stone.getX() && endX < stone.getX() + stone.getWidth() && endY > stone.getY()
 				&& endY < stone.getY() + stone.getHeight()) {
+				//设置积分
+				changeIntegral(stone.getIntegral());
 				status = 2;
 			}
 		});
 	}
 
 	private static void goldCheck () {
-		List<ImageInfoModel> allGold = GoldDraw.getAllGold();
+		List<ObjectInfoModel> allGold = GoldDraw.getAllGold();
 		if (CollectionUtils.isEmpty(allGold)) {
 			return;
 		}
-		for (ImageInfoModel gold : allGold) {
+		for (ObjectInfoModel gold : allGold) {
 			if (null == gold.getX() || null == gold.getY()) {
 				continue;
 			}
@@ -165,13 +167,16 @@ public class LineDraw extends BaseDraw {
 				&& endY < gold.getY() + gold.getHeight()) {
 				//设置当前符合条件的
 				gold.setMove(true);
+				//设置积分&金币
+				changeGoldCoin(gold.getGoldCoin());
+				changeIntegral(gold.getIntegral());
 				status = 3;
 			}
 		}
 	}
 
 	private static void delGold () {
-		List<ImageInfoModel> allGold = GoldDraw.getAllGold();
+		List<ObjectInfoModel> allGold = GoldDraw.getAllGold();
 		if (CollectionUtils.isEmpty(allGold)) {
 			return;
 		}
@@ -179,7 +184,7 @@ public class LineDraw extends BaseDraw {
 	}
 
 	private static void moveGold (Integer goldX, Integer goldY) {
-		List<ImageInfoModel> allGold = GoldDraw.getAllGold();
+		List<ObjectInfoModel> allGold = GoldDraw.getAllGold();
 		if (CollectionUtils.isEmpty(allGold)) {
 			return;
 		}

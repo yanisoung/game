@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 import java.util.List;
 
-import com.bai.game.gold.miner.model.ImageInfoModel;
+import com.bai.game.gold.miner.model.ObjectInfoModel;
 
 /**
  * 金子 处理类
@@ -24,9 +24,9 @@ public class GoldDraw extends BaseDraw {
 		paint(key, 10, g, imageObserver);
 	}
 
-	public static List<ImageInfoModel> getAllGold () {
+	public static List<ObjectInfoModel> getAllGold () {
 		String key = "GoldDraw";
-		return getImageInfoModel(key);
+		return getObjectInfoModel(key);
 	}
 
 }

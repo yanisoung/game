@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 import java.util.List;
 
-import com.bai.game.gold.miner.model.ImageInfoModel;
+import com.bai.game.gold.miner.model.ObjectInfoModel;
 
 /**
  * 黑石头 处理类
@@ -24,7 +24,7 @@ public class StoneDraw extends BaseDraw {
 		paint("StoneDraw", 5, g, imageObserver);
 	}
 
-	public static List<ImageInfoModel> getAllStone () {
-		return getImageInfoModel("StoneDraw");
+	public static List<ObjectInfoModel> getAllStone () {
+		return getObjectInfoModel("StoneDraw");
 	}
 }

@@ -1,6 +1,7 @@
 package com.bai.game.gold.miner.draw;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.ImageObserver;
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.Map;
 import java.util.Random;
 
 import com.bai.game.gold.miner.GoldMinerPicUtil;
-import com.bai.game.gold.miner.model.ImageInfoModel;
+import com.bai.game.gold.miner.model.ObjectInfoModel;
 import com.google.common.collect.Lists;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.BeanUtils;
@@ -19,19 +20,60 @@ import org.springframework.beans.BeanUtils;
  */
 public class BaseDraw {
 
-	public static Map<String, List<ImageInfoModel>> IMAGE_INFO_MAP = new HashMap<>();
+	/**
+	 * 物体实体
+	 */
+	public static Map<String, List<ObjectInfoModel>> IMAGE_INFO_MAP = new HashMap<>();
 
-	public static List<ImageInfoModel> getImageInfoModel (String key) {
+	/**
+	 * 数据集合
+	 */
+	public static Map<String, Integer> DATA_INFO_MAP = new HashMap<>();
+
+	static {
+		//初始化积分
+		DATA_INFO_MAP.put("integral", 0);
+		//初始化金币
+		DATA_INFO_MAP.put("goldCoin", 0);
+	}
+
+	public static Integer getIntegral () {
+		return DATA_INFO_MAP.get("integral");
+	}
+
+	public static Integer getGoldCoin () {
+		return DATA_INFO_MAP.get("goldCoin");
+	}
+
+	public static void changeIntegral (Integer addIntegral) {
+		if (null == addIntegral) {
+			return;
+		}
+		Integer integral = DATA_INFO_MAP.get("integral");
+		if (integral < 1) {
+			return;
+		}
+		DATA_INFO_MAP.put("integral", +addIntegral);
+	}
+
+	public static void changeGoldCoin (Integer addGoldCoin) {
+		if (null == addGoldCoin) {
+			return;
+		}
+		DATA_INFO_MAP.put("goldCoin", DATA_INFO_MAP.get("goldCoin") + addGoldCoin);
+	}
+
+	public static List<ObjectInfoModel> getObjectInfoModel (String key) {
 		return IMAGE_INFO_MAP.get(key);
 	}
 
-	public static List<ImageInfoModel> buildAllGoldOrStone (List<ImageInfoModel> orImages, Integer count) {
-		List<ImageInfoModel> allImages = Lists.newArrayList();
+	public static List<ObjectInfoModel> buildAllGoldOrStone (List<ObjectInfoModel> orImages, Integer count) {
+		List<ObjectInfoModel> allImages = Lists.newArrayList();
 		Random random = new Random();
 		for (int i = 0; i < count; i++) {
-			ImageInfoModel out = new ImageInfoModel();
+			ObjectInfoModel out = new ObjectInfoModel();
 			BeanUtils.copyProperties(orImages.get(random.nextInt(orImages.size() - 1)), out);
-			List<ImageInfoModel> all = Lists.newArrayList();
+			List<ObjectInfoModel> all = Lists.newArrayList();
 			IMAGE_INFO_MAP.values().forEach(all::addAll);
 			buildXYInfo(all, out);
 			allImages.add(out);
@@ -39,10 +81,10 @@ public class BaseDraw {
 		return allImages;
 	}
 
-	public static void buildXYInfo (List<ImageInfoModel> all, ImageInfoModel outModel) {
+	public static void buildXYInfo (List<ObjectInfoModel> all, ObjectInfoModel outModel) {
 		Integer x = x();
 		Integer y = y();
-		for (ImageInfoModel infoModel : all) {
+		for (ObjectInfoModel infoModel : all) {
 			if (null == infoModel.getX() || null == infoModel.getY()) {
 				continue;
 			}
@@ -72,7 +114,7 @@ public class BaseDraw {
 	 * @param imageObserver
 	 */
 	public static void paint (String key, Integer count, Graphics g, ImageObserver imageObserver) {
-		List<ImageInfoModel> allImages = getImageInfoModel(key);
+		List<ObjectInfoModel> allImages = getObjectInfoModel(key);
 		if (CollectionUtils.isEmpty(allImages)) {
 			allImages = buildAllGoldOrStone(GoldMinerPicUtil.getByKey(key), count);
 		}
@@ -80,10 +122,10 @@ public class BaseDraw {
 		doPaint(g, imageObserver, allImages);
 	}
 
-	public static void doPaint (Graphics g, ImageObserver imageObserver, List<ImageInfoModel> allImages) {
-		allImages.forEach(imageInfoModel -> {
-			g.drawImage(imageInfoModel.getImage(), imageInfoModel.getX(), imageInfoModel.getY(),
-				imageInfoModel.getWidth(), imageInfoModel.getHeight(), imageObserver);
+	public static void doPaint (Graphics g, ImageObserver imageObserver, List<ObjectInfoModel> allImages) {
+		allImages.forEach(ObjectInfoModel -> {
+			g.drawImage(ObjectInfoModel.getImage(), ObjectInfoModel.getX(), ObjectInfoModel.getY(),
+				ObjectInfoModel.getWidth(), ObjectInfoModel.getHeight(), imageObserver);
 		});
 	}
 }

@@ -1,12 +1,14 @@
 package com.bai.game.gold.miner.draw;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import com.bai.game.gold.miner.GoldMinerPicUtil;
-import com.bai.game.gold.miner.model.ImageInfoModel;
+import com.bai.game.gold.miner.model.ObjectInfoModel;
 
 /**
  * 背景图片处理类
@@ -14,7 +16,7 @@ import com.bai.game.gold.miner.model.ImageInfoModel;
  * @author Bai
  * @date 2021/8/10 21:19
  */
-public class BgDraw {
+public class BgDraw extends BaseDraw {
 
 	/**
 	 * 绘制背景图片
@@ -22,11 +24,25 @@ public class BgDraw {
 	 * @param g
 	 */
 	public static void paint (Graphics g, ImageObserver imageObserver) {
-		Map<String, ImageInfoModel> allBgImage = GoldMinerPicUtil.getAllBgImage();
-		for (Entry<String, ImageInfoModel> entry : allBgImage.entrySet()) {
-			ImageInfoModel imageInfoModel = entry.getValue();
-			g.drawImage(imageInfoModel.getImage(), imageInfoModel.getX(), imageInfoModel.getY(),
-				imageInfoModel.getWidth(), imageInfoModel.getHeight(), imageObserver);
+		//绘制背景图片
+		paintBg(g, imageObserver);
+		//绘制积分&金币等物品
+		paintDataInfo(g, imageObserver);
+	}
+
+	private static void paintDataInfo (Graphics g, ImageObserver imageObserver) {
+		g.setColor(Color.black);
+		g.setFont(new Font("仿宋", Font.BOLD, 50));
+		g.drawString("积分:" + getIntegral(), 50, 150);
+		g.drawString("金币:" + getGoldCoin(), 50, 190);
+	}
+
+	private static void paintBg (Graphics g, ImageObserver imageObserver) {
+		Map<String, ObjectInfoModel> allBgImage = GoldMinerPicUtil.getAllBgImage();
+		for (Entry<String, ObjectInfoModel> entry : allBgImage.entrySet()) {
+			ObjectInfoModel objectInfoModel = entry.getValue();
+			g.drawImage(objectInfoModel.getImage(), objectInfoModel.getX(), objectInfoModel.getY(),
+				objectInfoModel.getWidth(), objectInfoModel.getHeight(), imageObserver);
 		}
 	}
 
