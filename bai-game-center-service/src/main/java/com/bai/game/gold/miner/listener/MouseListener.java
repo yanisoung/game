@@ -21,7 +21,8 @@ public class MouseListener {
 			public void mouseClicked (MouseEvent e) {
 				super.mouseClicked(e);
 				if (e.getButton() == 1) {
-					LineDraw.status = 1;
+					//修改线的状态
+					LineDraw.changeStatus();
 				}
 			}
 		});

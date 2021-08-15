@@ -23,7 +23,8 @@ public class KeyListener {
 				super.keyPressed(e);
 				int keyCode = e.getKeyCode();
 				if (Objects.equals(keyCode, KeyEvent.VK_S) || Objects.equals(keyCode, KeyEvent.VK_DOWN)) {
-					LineDraw.status = 1;
+					//修改线的状态
+					LineDraw.changeStatus();
 				}
 			}
 		});

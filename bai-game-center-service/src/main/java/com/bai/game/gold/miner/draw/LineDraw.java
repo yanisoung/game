@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.util.List;
+import java.util.Objects;
 
 import com.bai.game.gold.miner.model.ImageInfoModel;
 import org.apache.commons.collections.CollectionUtils;
@@ -135,6 +136,10 @@ public class LineDraw extends BaseDraw {
 			if (null == imageInfoModel.getX() || null == imageInfoModel.getY()) {
 				continue;
 			}
+			//一次只允许抓取一个
+			if (null != imageInfoModel.getMove() && imageInfoModel.getMove()) {
+				continue;
+			}
 			if (endX > imageInfoModel.getX() && endX < imageInfoModel.getX() + imageInfoModel.getWidth()
 				&& endY > imageInfoModel.getY() && endY < imageInfoModel.getY() + imageInfoModel.getHeight()) {
 				//设置当前符合条件的
@@ -163,5 +168,12 @@ public class LineDraw extends BaseDraw {
 				gold.setY(goldY);
 			}
 		});
+	}
+
+	public static void changeStatus () {
+		//只有在摇摆的状态下才允许下放
+		if (Objects.equals(LineDraw.status, 0)) {
+			LineDraw.status = 1;
+		}
 	}
 }
