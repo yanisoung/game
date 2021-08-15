@@ -62,6 +62,8 @@ public class LineDraw extends BaseDraw {
 	 * @param g
 	 */
 	public static void paint (Graphics g) {
+		//判断当前的线与石头的交集
+		stoneCheck();
 		//判断当前的线与金子的交集
 		goldCheck();
 		//筛选不同状态执行不同动作
@@ -127,23 +129,37 @@ public class LineDraw extends BaseDraw {
 		g2.drawLine(x, y, endX, endY);
 	}
 
+	private static void stoneCheck () {
+		List<ImageInfoModel> allStone = StoneDraw.getAllStone();
+		if (CollectionUtils.isEmpty(allStone)) {
+			return;
+		}
+		allStone.forEach(stone -> {
+			//当触碰到石头时，收回
+			if (endX > stone.getX() && endX < stone.getX() + stone.getWidth() && endY > stone.getY()
+				&& endY < stone.getY() + stone.getHeight()) {
+				status = 2;
+			}
+		});
+	}
+
 	private static void goldCheck () {
 		List<ImageInfoModel> allGold = GoldDraw.getAllGold();
 		if (CollectionUtils.isEmpty(allGold)) {
 			return;
 		}
-		for (ImageInfoModel imageInfoModel : allGold) {
-			if (null == imageInfoModel.getX() || null == imageInfoModel.getY()) {
+		for (ImageInfoModel gold : allGold) {
+			if (null == gold.getX() || null == gold.getY()) {
 				continue;
 			}
 			//一次只允许抓取一个
-			if (null != imageInfoModel.getMove() && imageInfoModel.getMove()) {
+			if (null != gold.getMove() && gold.getMove()) {
 				continue;
 			}
-			if (endX > imageInfoModel.getX() && endX < imageInfoModel.getX() + imageInfoModel.getWidth()
-				&& endY > imageInfoModel.getY() && endY < imageInfoModel.getY() + imageInfoModel.getHeight()) {
+			if (endX > gold.getX() && endX < gold.getX() + gold.getWidth()
+				&& endY > gold.getY() && endY < gold.getY() + gold.getHeight()) {
 				//设置当前符合条件的
-				imageInfoModel.setMove(true);
+				gold.setMove(true);
 				status = 3;
 			}
 		}
