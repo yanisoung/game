@@ -57,6 +57,11 @@ public class LineDraw extends BaseDraw {
 	public static Integer status = 0;
 
 	/**
+	 * 线的收缩速度
+	 */
+	private static Integer velocity = 20;
+
+	/**
 	 * 绘制摇摆的线
 	 *
 	 * @param g
@@ -85,7 +90,7 @@ public class LineDraw extends BaseDraw {
 		case 1:
 			//一直绘制线段直到终点后返回
 			if (length < 630) {
-				length += 10;
+				length += velocity;
 				drawLine(g);
 			} else {
 				status = 2;
@@ -94,7 +99,7 @@ public class LineDraw extends BaseDraw {
 		case 2:
 			//一直回收，直到初始化的线长度
 			if (length > initLength) {
-				length -= 10;
+				length -= velocity;
 				drawLine(g);
 			} else {
 				status = 0;
@@ -102,7 +107,7 @@ public class LineDraw extends BaseDraw {
 			break;
 		case 3:
 			if (length > initLength) {
-				length -= 10;
+				length -= velocity;
 				drawLine(g);
 				//移动金子
 				moveGold(endX - 40, endY);
@@ -156,8 +161,8 @@ public class LineDraw extends BaseDraw {
 			if (null != gold.getMove() && gold.getMove()) {
 				continue;
 			}
-			if (endX > gold.getX() && endX < gold.getX() + gold.getWidth()
-				&& endY > gold.getY() && endY < gold.getY() + gold.getHeight()) {
+			if (endX > gold.getX() && endX < gold.getX() + gold.getWidth() && endY > gold.getY()
+				&& endY < gold.getY() + gold.getHeight()) {
 				//设置当前符合条件的
 				gold.setMove(true);
 				status = 3;
