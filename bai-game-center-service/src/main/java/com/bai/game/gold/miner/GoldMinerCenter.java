@@ -10,6 +10,7 @@ import com.bai.game.gold.miner.draw.LineDraw;
 import com.bai.game.gold.miner.draw.MinerDraw;
 import com.bai.game.gold.miner.draw.StoneDraw;
 import com.bai.game.gold.miner.draw.WindowsDraw;
+import com.bai.game.gold.miner.listener.KeyListener;
 import com.bai.game.gold.miner.listener.MouseListener;
 
 /**
@@ -48,16 +49,8 @@ public class GoldMinerCenter extends JFrame {
 		WindowsDraw.paint(this);
 		//鼠标事件监听
 		MouseListener.listener(this);
-		//todo 键盘事件
-
-		while (true){
-			repaint();
-			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+		//键盘事件
+		KeyListener.listener(this);
 	}
 
 	public static void main (String[] args) {
