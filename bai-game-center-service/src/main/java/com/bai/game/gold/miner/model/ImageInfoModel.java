@@ -43,6 +43,11 @@ public class ImageInfoModel {
 	 */
 	private Image image;
 
+	/**
+	 * 是否移动
+	 */
+	private Boolean move;
+
 	public static ImageInfoModel build (String key, String imagePath, Integer width, Integer height, Integer x,
 		Integer y) {
 		ImageInfoModel imageInfoModel = new ImageInfoModel();
@@ -52,6 +57,7 @@ public class ImageInfoModel {
 		imageInfoModel.setWidth(width);
 		imageInfoModel.setHeight(height);
 		imageInfoModel.setImage(Toolkit.getDefaultToolkit().getImage(imagePath));
+		imageInfoModel.setMove(false);
 		return imageInfoModel;
 	}
 
@@ -61,6 +67,7 @@ public class ImageInfoModel {
 		imageInfoModel.setX(x);
 		imageInfoModel.setY(y);
 		imageInfoModel.setImage(Toolkit.getDefaultToolkit().getImage(imagePath));
+		imageInfoModel.setMove(false);
 		return imageInfoModel;
 	}
 
@@ -70,6 +77,7 @@ public class ImageInfoModel {
 		imageInfoModel.setWidth(width);
 		imageInfoModel.setHeight(height);
 		imageInfoModel.setImage(Toolkit.getDefaultToolkit().getImage(imagePath));
+		imageInfoModel.setMove(false);
 		return imageInfoModel;
 	}
 

@@ -1,7 +1,10 @@
 package com.bai.game.gold.miner.draw;
 
-import java.awt.*;
+import java.awt.Graphics;
 import java.awt.image.ImageObserver;
+import java.util.List;
+
+import com.bai.game.gold.miner.model.ImageInfoModel;
 
 /**
  * 金子 处理类
@@ -17,7 +20,13 @@ public class GoldDraw extends BaseDraw {
 	 * @param g
 	 */
 	public static void paint (Graphics g, ImageObserver imageObserver) {
-		paint("GoldDraw", 10, g, imageObserver);
+		String key = "GoldDraw";
+		paint(key, 10, g, imageObserver);
+	}
+
+	public static List<ImageInfoModel> getAllGold () {
+		String key = "GoldDraw";
+		return getImageInfoModel(key);
 	}
 
 }
