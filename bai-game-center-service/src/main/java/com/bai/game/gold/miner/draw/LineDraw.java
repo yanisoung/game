@@ -40,6 +40,9 @@ public class LineDraw extends BaseDraw {
 	 */
 	private static Double length = initLength;
 
+	/**
+	 * 控制偏移角度
+	 */
 	private static Double n = 0.0;
 
 	/**
@@ -79,9 +82,9 @@ public class LineDraw extends BaseDraw {
 		switch (status) {
 		case 0:
 			//改变当前摇摆方向
-			if (n < 0.1) {
+			if (n < 0.0) {
 				dir = 1;
-			} else if (n > 0.9) {
+			} else if (n > 1) {
 				dir = -1;
 			}
 			n = n + 0.01 * dir;

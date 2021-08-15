@@ -33,8 +33,8 @@ public class BgDraw extends BaseDraw {
 	private static void paintDataInfo (Graphics g, ImageObserver imageObserver) {
 		g.setColor(Color.black);
 		g.setFont(new Font("仿宋", Font.BOLD, 50));
-		g.drawString("积分:" + getIntegral(), 50, 150);
-		g.drawString("金币:" + getGoldCoin(), 50, 190);
+		g.drawString("积分:" + getIntegral(), 40, 100);
+		g.drawString("金币:" + getGoldCoin(), 40, 160);
 	}
 
 	private static void paintBg (Graphics g, ImageObserver imageObserver) {

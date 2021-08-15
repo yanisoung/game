@@ -6,6 +6,7 @@ import java.awt.image.ImageObserver;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 
 import com.bai.game.gold.miner.GoldMinerPicUtil;
@@ -50,10 +51,10 @@ public class BaseDraw {
 			return;
 		}
 		Integer integral = DATA_INFO_MAP.get("integral");
-		if (integral < 1) {
+		if (Objects.equals(integral, 0) && addIntegral < 0) {
 			return;
 		}
-		DATA_INFO_MAP.put("integral", +addIntegral);
+		DATA_INFO_MAP.put("integral", integral + addIntegral);
 	}
 
 	public static void changeGoldCoin (Integer addGoldCoin) {
