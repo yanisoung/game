@@ -26,18 +26,18 @@ public class LineDraw extends BaseDraw {
 	/**
 	 * 终点坐标
 	 */
-	private static Integer endX = 1200;
-	private static Integer endY = 800;
+	public static Integer endX = 1200;
+	public static Integer endY = 800;
 
 	/**
 	 * 线长
 	 */
-	private static Double startLength = 100.0;
+	private static Double initLength = 50.0;
 
 	/**
 	 * 线长
 	 */
-	private static Double length = startLength;
+	private static Double length = initLength;
 
 	private static Double n = 0.0;
 
@@ -90,7 +90,7 @@ public class LineDraw extends BaseDraw {
 			break;
 		case 2:
 			//一直回收，直到初始化的线长度
-			if (length > startLength) {
+			if (length > initLength) {
 				length -= 10;
 				drawLine(g);
 			} else {
@@ -98,7 +98,7 @@ public class LineDraw extends BaseDraw {
 			}
 			break;
 		case 3:
-			if (length > startLength) {
+			if (length > initLength) {
 				length -= 10;
 				drawLine(g);
 				//移动金子

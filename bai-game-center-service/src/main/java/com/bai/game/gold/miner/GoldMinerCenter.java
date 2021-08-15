@@ -1,11 +1,13 @@
 package com.bai.game.gold.miner;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Image;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 import com.bai.game.gold.miner.draw.BgDraw;
 import com.bai.game.gold.miner.draw.GoldDraw;
+import com.bai.game.gold.miner.draw.GrapnelDraw;
 import com.bai.game.gold.miner.draw.LineDraw;
 import com.bai.game.gold.miner.draw.MinerDraw;
 import com.bai.game.gold.miner.draw.StoneDraw;
@@ -37,6 +39,8 @@ public class GoldMinerCenter extends JFrame {
 		MinerDraw.paint(graphics, null);
 		//绘制线
 		LineDraw.paint(graphics);
+		//绘制钩子
+		GrapnelDraw.paint(graphics);
 		//绘制黑石头
 		StoneDraw.paint(graphics, null);
 		//绘制金子

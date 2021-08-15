@@ -86,6 +86,10 @@ public class GoldMinerPicUtil {
 			ImageInfoModel.build(GoldMinerConstant.CRAZY_MINER, PRE + GoldMinerConstant.CRAZY_MINER, 140, 150, 530,
 				60));
 
+		//钩子
+		MINER_IMAGE_MAP.put(GoldMinerConstant.GRANPEL,
+			ImageInfoModel.build(GoldMinerConstant.GRANPEL, PRE + GoldMinerConstant.GRANPEL, 140, 150, 530, 60));
+
 	}
 
 	public static Map<String, ImageInfoModel> getAllBgImage () {

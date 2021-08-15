@@ -19,6 +19,11 @@ public class GoldMinerConstant {
 	public static final String BG_LAND = "bgLand.png";
 
 	/**
+	 * 抓钩
+	 */
+	public static final String GRANPEL = "grapnel.png";
+
+	/**
 	 * 最小块  金子
 	 */
 	public static final String SMALLEST_GOLD = "smallestGold.gif";
