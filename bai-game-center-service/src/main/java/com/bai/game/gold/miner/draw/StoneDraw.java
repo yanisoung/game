@@ -6,6 +6,8 @@ import java.util.List;
 
 import com.bai.game.gold.miner.model.ObjectInfoModel;
 
+import static com.bai.game.gold.miner.constant.DataInfoConstant.STONE_DRAW;
+
 /**
  * 黑石头 处理类
  *
@@ -15,16 +17,16 @@ import com.bai.game.gold.miner.model.ObjectInfoModel;
 public class StoneDraw extends BaseDraw {
 
 	/**
-	 * 随机刷新金子
+	 * 随机刷新石头
 	 *
 	 * @param g
 	 * @param imageObserver
 	 */
 	public static void paint (Graphics g, ImageObserver imageObserver) {
-		paint("StoneDraw", 5, g, imageObserver);
+		paint(STONE_DRAW, getStoneCount(), g, imageObserver);
 	}
 
 	public static List<ObjectInfoModel> getAllStone () {
-		return getObjectInfoModel("StoneDraw");
+		return getObjectInfoModel(STONE_DRAW);
 	}
 }

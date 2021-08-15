@@ -6,9 +6,11 @@ import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import com.bai.game.gold.miner.GoldMinerPicUtil;
 import com.bai.game.gold.miner.model.ObjectInfoModel;
+import com.bai.game.thred.ThreadPoolExecutorUtil;
 
 /**
  * 背景图片处理类
@@ -18,6 +20,8 @@ import com.bai.game.gold.miner.model.ObjectInfoModel;
  */
 public class BgDraw extends BaseDraw {
 
+	private static ThreadPoolExecutor threadPoolExecutor = ThreadPoolExecutorUtil.getPool("BgDraw");
+
 	/**
 	 * 绘制背景图片
 	 *
@@ -26,17 +30,46 @@ public class BgDraw extends BaseDraw {
 	public static void paint (Graphics g, ImageObserver imageObserver) {
 		//绘制背景图片
 		paintBg(g, imageObserver);
+		//是否满足过关条件
+		checkLevel();
 		//绘制积分&金币等物品
-		paintDataInfo(g, imageObserver);
+		paintDataInfo(g);
 		//商店
 		ShopDraw.paint(g, imageObserver);
 	}
 
-	private static void paintDataInfo (Graphics g, ImageObserver imageObserver) {
+	private static void checkLevel () {
+		Integer integral = getIntegral();
+	}
+
+	private static void paintDataInfo (Graphics g) {
 		g.setColor(Color.black);
 		g.setFont(new Font("仿宋", Font.BOLD, 40));
-		g.drawString("积分:" + getIntegral(), 80, 100);
-		g.drawString("金币:" + getGoldCoin(), 80, 160);
+		g.drawString("积分:" + getIntegral(), 250, 100);
+		g.drawString("金币:" + getGoldCoin(), 250, 160);
+		g.drawString("倒计时:" + getTime(), 750, 120);
+		//异步减少倒计时
+		asynChangeTime();
+		g.setFont(new Font("仿宋", Font.BOLD, 30));
+		g.drawString("Level:" + getLevel(), 40, 80);
+
+		g.setFont(new Font("仿宋", Font.BOLD, 20));
+		g.drawString("过关积分:" + getLevelIntegral(), 40, 120);
+	}
+
+	private static void asynChangeTime () {
+		//todo 解决线程安全问题 白
+		threadPoolExecutor.execute(new Runnable() {
+			@Override
+			public void run () {
+				try {
+					Thread.sleep(1000);
+					changeItem(-1);
+				} catch (InterruptedException e) {
+					//
+				}
+			}
+		});
 	}
 
 	private static void paintBg (Graphics g, ImageObserver imageObserver) {

@@ -28,8 +28,8 @@ public class ShopDraw extends BaseDraw {
 		g.drawImage(potion.getImage(), potion.getX(), potion.getY(), potion.getWidth(), potion.getHeight(),
 			imageObserver);
 		g.setFont(new Font("仿宋", Font.BOLD, 20));
-		g.drawString(" X " + getPotion(), 340, 130);
-		g.drawString("F键使用/购买", 270, 190);
+		g.drawString(" X " + getPotion(), 1070, 130);
+		g.drawString("F键使用/购买", 1000, 190);
 	}
 
 	/**
@@ -49,7 +49,8 @@ public class ShopDraw extends BaseDraw {
 		} else {
 			//直接消耗1个
 			changePotion(-1);
-			//todo 执行药水效果
+			//药水效果：+30s
+			changeItem(30);
 		}
 	}
 

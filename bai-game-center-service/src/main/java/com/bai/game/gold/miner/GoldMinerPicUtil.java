@@ -103,7 +103,7 @@ public class GoldMinerPicUtil {
 
 		//药水
 		SHO_DATA_MAP.put(GoldMinerConstant.POTION,
-			ObjectInfoModel.build(GoldMinerConstant.POTION, PRE + GoldMinerConstant.POTION, 65, 78, 260, 80));
+			ObjectInfoModel.build(GoldMinerConstant.POTION, PRE + GoldMinerConstant.POTION, 65, 78, 1000, 80));
 
 	}
 

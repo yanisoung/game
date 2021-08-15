@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Random;
 
 import com.bai.game.gold.miner.GoldMinerPicUtil;
+import com.bai.game.gold.miner.constant.DataInfoConstant;
 import com.bai.game.gold.miner.model.ObjectInfoModel;
 import com.google.common.collect.Lists;
 import org.apache.commons.collections.CollectionUtils;
@@ -24,37 +25,74 @@ public class BaseDraw {
 	/**
 	 * 物体实体
 	 */
-	public static Map<String, List<ObjectInfoModel>> IMAGE_INFO_MAP = new HashMap<>();
+	public volatile static Map<String, List<ObjectInfoModel>> IMAGE_INFO_MAP = new HashMap<>();
 
 	/**
 	 * 数据集合
 	 */
-	public static Map<String, Integer> DATA_INFO_MAP = new HashMap<>();
+	public volatile static Map<String, Integer> DATA_INFO_MAP = new HashMap<>();
 
 	/**
 	 * 店铺集合
 	 */
-	public static Map<String, Integer> SHOP_INFO_MAP = new HashMap<>();
+	public volatile static Map<String, Integer> SHOP_INFO_MAP = new HashMap<>();
 
 	static {
+		init();
+	}
+
+	public static void init () {
+		//初始化当前级别
+		DATA_INFO_MAP.put(DataInfoConstant.LEVEL, 1);
+		//初始化倒计时
+		DATA_INFO_MAP.put(DataInfoConstant.TIME, 120);
+		//初始化过关的积分
+		DATA_INFO_MAP.put(DataInfoConstant.LEVEL_INTEGRAL, 10);
+		//初始化 刷新金子的个数
+		DATA_INFO_MAP.put(DataInfoConstant.LEVEL_GOLD_CNT, 10);
+		//初始化 刷新石头的个数
+		DATA_INFO_MAP.put(DataInfoConstant.LEVEL_STONE_CNT, 5);
 		//初始化积分
-		DATA_INFO_MAP.put("integral", 0);
+		DATA_INFO_MAP.put(DataInfoConstant.INTEGRAL, 0);
 		//初始化金币
-		DATA_INFO_MAP.put("goldCoin", 0);
+		DATA_INFO_MAP.put(DataInfoConstant.GOLD_COIN, 0);
+
 		//初始化药水
-		SHOP_INFO_MAP.put("potion", 0);
+		SHOP_INFO_MAP.put(DataInfoConstant.POTION, 3);
+	}
+
+	public static Integer getLevelIntegral () {
+		return DATA_INFO_MAP.get(DataInfoConstant.LEVEL_INTEGRAL);
 	}
 
 	public static Integer getIntegral () {
-		return DATA_INFO_MAP.get("integral");
+		return DATA_INFO_MAP.get(DataInfoConstant.INTEGRAL);
+	}
+
+	public static Integer getLevel () {
+		return DATA_INFO_MAP.get(DataInfoConstant.LEVEL);
 	}
 
 	public static Integer getGoldCoin () {
-		return DATA_INFO_MAP.get("goldCoin");
+		return DATA_INFO_MAP.get(DataInfoConstant.GOLD_COIN);
 	}
 
 	public static Integer getPotion () {
-		return SHOP_INFO_MAP.get("potion");
+		return SHOP_INFO_MAP.get(DataInfoConstant.POTION);
+	}
+
+	public static synchronized void changeItem (Integer addTime) {
+		if (null == addTime) {
+			return;
+		}
+		if (getTime() < 1 && addTime < 1) {
+			return;
+		}
+		DATA_INFO_MAP.put(DataInfoConstant.TIME, getTime() + addTime);
+	}
+
+	public static Integer getTime () {
+		return DATA_INFO_MAP.get(DataInfoConstant.TIME);
 	}
 
 	public static void changePotion (Integer addCount) {
@@ -65,25 +103,25 @@ public class BaseDraw {
 		if (Objects.equals(potion, 0) && addCount < 0) {
 			return;
 		}
-		SHOP_INFO_MAP.put("potion", potion + addCount);
+		SHOP_INFO_MAP.put(DataInfoConstant.POTION, potion + addCount);
 	}
 
 	public static void changeIntegral (Integer addIntegral) {
 		if (null == addIntegral) {
 			return;
 		}
-		Integer integral = DATA_INFO_MAP.get("integral");
+		Integer integral = DATA_INFO_MAP.get(DataInfoConstant.INTEGRAL);
 		if (Objects.equals(integral, 0) && addIntegral < 0) {
 			return;
 		}
-		DATA_INFO_MAP.put("integral", integral + addIntegral);
+		DATA_INFO_MAP.put(DataInfoConstant.INTEGRAL, integral + addIntegral);
 	}
 
 	public static void changeGoldCoin (Integer addGoldCoin) {
 		if (null == addGoldCoin) {
 			return;
 		}
-		DATA_INFO_MAP.put("goldCoin", DATA_INFO_MAP.get("goldCoin") + addGoldCoin);
+		DATA_INFO_MAP.put(DataInfoConstant.GOLD_COIN, DATA_INFO_MAP.get(DataInfoConstant.GOLD_COIN) + addGoldCoin);
 	}
 
 	public static List<ObjectInfoModel> getObjectInfoModel (String key) {
@@ -128,6 +166,14 @@ public class BaseDraw {
 
 	public static Integer y () {
 		return 200 + (int)(Math.random() * (650 - 200 + 1));
+	}
+
+	public static Integer getStoneCount () {
+		return DATA_INFO_MAP.get(DataInfoConstant.LEVEL_STONE_CNT);
+	}
+
+	public static Integer getGoldCount () {
+		return DATA_INFO_MAP.get(DataInfoConstant.LEVEL_GOLD_CNT);
 	}
 
 	/**

@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 import java.util.List;
 
+import com.bai.game.gold.miner.constant.DataInfoConstant;
 import com.bai.game.gold.miner.model.ObjectInfoModel;
 
 /**
@@ -20,12 +21,12 @@ public class GoldDraw extends BaseDraw {
 	 * @param g
 	 */
 	public static void paint (Graphics g, ImageObserver imageObserver) {
-		String key = "GoldDraw";
-		paint(key, 10, g, imageObserver);
+		String key = DataInfoConstant.GOLD_DRAW;
+		paint(key, getGoldCount(), g, imageObserver);
 	}
 
 	public static List<ObjectInfoModel> getAllGold () {
-		String key = "GoldDraw";
+		String key = DataInfoConstant.GOLD_DRAW;
 		return getObjectInfoModel(key);
 	}
 
