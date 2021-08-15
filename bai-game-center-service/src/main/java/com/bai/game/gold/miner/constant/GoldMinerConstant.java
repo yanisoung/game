@@ -24,6 +24,11 @@ public class GoldMinerConstant {
 	public static final String GRANPEL = "grapnel.png";
 
 	/**
+	 * 药水
+	 */
+	public static final String POTION = "potion.png";
+
+	/**
 	 * 最小块  金子
 	 */
 	public static final String SMALLEST_GOLD = "smallestGold.gif";

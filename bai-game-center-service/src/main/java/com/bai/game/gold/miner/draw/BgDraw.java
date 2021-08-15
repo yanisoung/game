@@ -28,13 +28,15 @@ public class BgDraw extends BaseDraw {
 		paintBg(g, imageObserver);
 		//绘制积分&金币等物品
 		paintDataInfo(g, imageObserver);
+		//商店
+		ShopDraw.paint(g, imageObserver);
 	}
 
 	private static void paintDataInfo (Graphics g, ImageObserver imageObserver) {
 		g.setColor(Color.black);
-		g.setFont(new Font("仿宋", Font.BOLD, 50));
-		g.drawString("积分:" + getIntegral(), 40, 100);
-		g.drawString("金币:" + getGoldCoin(), 40, 160);
+		g.setFont(new Font("仿宋", Font.BOLD, 40));
+		g.drawString("积分:" + getIntegral(), 80, 100);
+		g.drawString("金币:" + getGoldCoin(), 80, 160);
 	}
 
 	private static void paintBg (Graphics g, ImageObserver imageObserver) {

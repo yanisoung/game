@@ -31,11 +31,18 @@ public class BaseDraw {
 	 */
 	public static Map<String, Integer> DATA_INFO_MAP = new HashMap<>();
 
+	/**
+	 * 店铺集合
+	 */
+	public static Map<String, Integer> SHOP_INFO_MAP = new HashMap<>();
+
 	static {
 		//初始化积分
 		DATA_INFO_MAP.put("integral", 0);
 		//初始化金币
 		DATA_INFO_MAP.put("goldCoin", 0);
+		//初始化药水
+		SHOP_INFO_MAP.put("potion", 0);
 	}
 
 	public static Integer getIntegral () {
@@ -44,6 +51,21 @@ public class BaseDraw {
 
 	public static Integer getGoldCoin () {
 		return DATA_INFO_MAP.get("goldCoin");
+	}
+
+	public static Integer getPotion () {
+		return SHOP_INFO_MAP.get("potion");
+	}
+
+	public static void changePotion (Integer addCount) {
+		if (null == addCount) {
+			return;
+		}
+		Integer potion = getPotion();
+		if (Objects.equals(potion, 0) && addCount < 0) {
+			return;
+		}
+		SHOP_INFO_MAP.put("potion", potion + addCount);
 	}
 
 	public static void changeIntegral (Integer addIntegral) {

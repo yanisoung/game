@@ -22,6 +22,11 @@ public class GoldMinerPicUtil {
 	public static Map<String, ObjectInfoModel> BG_IMAGE_MAP = new HashMap<>();
 
 	/**
+	 * 商店物品集合
+	 */
+	public static Map<String, ObjectInfoModel> SHO_DATA_MAP = new HashMap<>();
+
+	/**
 	 * 金子集合
 	 */
 	public static Map<String, ObjectInfoModel> GOLD_IMAGE_MAP = new HashMap<>();
@@ -94,7 +99,11 @@ public class GoldMinerPicUtil {
 
 		//钩子
 		MINER_IMAGE_MAP.put(GoldMinerConstant.GRANPEL,
-			ObjectInfoModel.build(GoldMinerConstant.GRANPEL, PRE + GoldMinerConstant.GRANPEL, 140, 150, 530, 60));
+			ObjectInfoModel.build(GoldMinerConstant.GRANPEL, PRE + GoldMinerConstant.GRANPEL, 71, 49, 530, 60));
+
+		//药水
+		SHO_DATA_MAP.put(GoldMinerConstant.POTION,
+			ObjectInfoModel.build(GoldMinerConstant.POTION, PRE + GoldMinerConstant.POTION, 65, 78, 260, 80));
 
 	}
 
@@ -116,6 +125,10 @@ public class GoldMinerPicUtil {
 
 	public static ObjectInfoModel getStoneImageByKey (String key) {
 		return STONE_IMAGE_MAP.get(key);
+	}
+
+	public static ObjectInfoModel getShopDataByKey (String key) {
+		return SHO_DATA_MAP.get(key);
 	}
 
 	public static ObjectInfoModel getMinerImageByKey (String key) {

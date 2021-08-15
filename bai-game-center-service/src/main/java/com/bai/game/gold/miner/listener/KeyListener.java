@@ -4,9 +4,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Objects;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 import com.bai.game.gold.miner.draw.LineDraw;
+import com.bai.game.gold.miner.draw.ShopDraw;
 
 /**
  * 键盘监听
@@ -25,6 +26,10 @@ public class KeyListener {
 				if (Objects.equals(keyCode, KeyEvent.VK_S) || Objects.equals(keyCode, KeyEvent.VK_DOWN)) {
 					//修改线的状态
 					LineDraw.changeStatus();
+				}
+				if (Objects.equals(keyCode, KeyEvent.VK_F)) {
+					//用品消耗&购买
+					ShopDraw.consume();
 				}
 			}
 		});
