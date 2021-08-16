@@ -31,15 +31,28 @@ public class BgDraw extends BaseDraw {
 		//绘制背景图片
 		paintBg(g, imageObserver);
 		//是否满足过关条件
-		checkLevel();
+		checkLevel(g, imageObserver);
 		//绘制积分&金币等物品
 		paintDataInfo(g);
 		//商店
 		ShopDraw.paint(g, imageObserver);
 	}
 
-	private static void checkLevel () {
+	private static void paintBg (Graphics g, ImageObserver imageObserver) {
+		Map<String, ObjectInfoModel> allBgImage = GoldMinerPicUtil.getAllBgImage();
+		for (Entry<String, ObjectInfoModel> entry : allBgImage.entrySet()) {
+			ObjectInfoModel objectInfoModel = entry.getValue();
+			g.drawImage(objectInfoModel.getImage(), objectInfoModel.getX(), objectInfoModel.getY(),
+				objectInfoModel.getWidth(), objectInfoModel.getHeight(), imageObserver);
+		}
+	}
+
+	private static void checkLevel (Graphics g, ImageObserver imageObserver) {
 		Integer integral = getIntegral();
+		//开启下一级
+		if (integral.compareTo(getLevelIntegral()) >= 0) {
+			reLevelInfo(g, imageObserver);
+		}
 	}
 
 	private static void paintDataInfo (Graphics g) {
@@ -61,18 +74,9 @@ public class BgDraw extends BaseDraw {
 		threadPoolExecutor.execute(new Runnable() {
 			@Override
 			public void run () {
-				changeItem(-1);
+				changeItem(-1, 1000);
 			}
 		});
-	}
-
-	private static void paintBg (Graphics g, ImageObserver imageObserver) {
-		Map<String, ObjectInfoModel> allBgImage = GoldMinerPicUtil.getAllBgImage();
-		for (Entry<String, ObjectInfoModel> entry : allBgImage.entrySet()) {
-			ObjectInfoModel objectInfoModel = entry.getValue();
-			g.drawImage(objectInfoModel.getImage(), objectInfoModel.getX(), objectInfoModel.getY(),
-				objectInfoModel.getWidth(), objectInfoModel.getHeight(), imageObserver);
-		}
 	}
 
 }

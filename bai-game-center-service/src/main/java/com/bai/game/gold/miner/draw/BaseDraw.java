@@ -61,6 +61,30 @@ public class BaseDraw {
 		SHOP_INFO_MAP.put(DataInfoConstant.POTION, 3);
 	}
 
+	/**
+	 * 重置级别
+	 *
+	 * @param g
+	 * @param imageObserver
+	 */
+	public static void reLevelInfo (Graphics g, ImageObserver imageObserver) {
+		//初始化当前级别
+		DATA_INFO_MAP.put(DataInfoConstant.LEVEL, getLevel() + 1);
+		//初始化倒计时
+		DATA_INFO_MAP.put(DataInfoConstant.TIME, 120);
+		//初始化过关的积分
+		DATA_INFO_MAP.put(DataInfoConstant.LEVEL_INTEGRAL, getLevelIntegral() + 2);
+		//初始化 刷新金子的个数
+		DATA_INFO_MAP.put(DataInfoConstant.LEVEL_GOLD_CNT, getGoldCoin() + 1);
+		//初始化 刷新石头的个数
+		DATA_INFO_MAP.put(DataInfoConstant.LEVEL_STONE_CNT, getStoneCount() + 1);
+		//初始化积分
+		DATA_INFO_MAP.put(DataInfoConstant.INTEGRAL, 0);
+		//重置 金子 & 石头
+		rePaint(DataInfoConstant.GOLD_DRAW, getGoldCount(), g, imageObserver);
+		rePaint(DataInfoConstant.STONE_DRAW, getStoneCount(), g, imageObserver);
+	}
+
 	public static Integer getLevelIntegral () {
 		return DATA_INFO_MAP.get(DataInfoConstant.LEVEL_INTEGRAL);
 	}
@@ -88,16 +112,24 @@ public class BaseDraw {
 		if (getTime() < 1 && addTime < 1) {
 			return;
 		}
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			//
-		}
 		DATA_INFO_MAP.put(DataInfoConstant.TIME, getTime() + addTime);
 	}
 
-	public static Integer getTime () {
-		return DATA_INFO_MAP.get(DataInfoConstant.TIME);
+	public static synchronized void changeItem (Integer addTime, Integer time) {
+		if (null == addTime) {
+			return;
+		}
+		if (getTime() < 1 && addTime < 1) {
+			return;
+		}
+		if (null != time) {
+			try {
+				Thread.sleep(time);
+			} catch (InterruptedException e) {
+				//
+			}
+		}
+		DATA_INFO_MAP.put(DataInfoConstant.TIME, getTime() + addTime);
 	}
 
 	public static void changePotion (Integer addCount) {
@@ -127,6 +159,18 @@ public class BaseDraw {
 			return;
 		}
 		DATA_INFO_MAP.put(DataInfoConstant.GOLD_COIN, DATA_INFO_MAP.get(DataInfoConstant.GOLD_COIN) + addGoldCoin);
+	}
+
+	public static Integer getTime () {
+		return DATA_INFO_MAP.get(DataInfoConstant.TIME);
+	}
+
+	public static Integer getStoneCount () {
+		return DATA_INFO_MAP.get(DataInfoConstant.LEVEL_STONE_CNT);
+	}
+
+	public static Integer getGoldCount () {
+		return DATA_INFO_MAP.get(DataInfoConstant.LEVEL_GOLD_CNT);
 	}
 
 	public static List<ObjectInfoModel> getObjectInfoModel (String key) {
@@ -173,14 +217,6 @@ public class BaseDraw {
 		return 200 + (int)(Math.random() * (650 - 200 + 1));
 	}
 
-	public static Integer getStoneCount () {
-		return DATA_INFO_MAP.get(DataInfoConstant.LEVEL_STONE_CNT);
-	}
-
-	public static Integer getGoldCount () {
-		return DATA_INFO_MAP.get(DataInfoConstant.LEVEL_GOLD_CNT);
-	}
-
 	/**
 	 * 随机刷新金子or石头
 	 *
@@ -196,10 +232,25 @@ public class BaseDraw {
 		doPaint(g, imageObserver, allImages);
 	}
 
+	/**
+	 * 随机刷新金子or石头
+	 *
+	 * @param g
+	 * @param imageObserver
+	 */
+	public static void rePaint (String key, Integer count, Graphics g, ImageObserver imageObserver) {
+		//重置为空
+		IMAGE_INFO_MAP.put(key, Lists.newArrayList());
+		List<ObjectInfoModel> allImages = buildAllGoldOrStone(GoldMinerPicUtil.getByKey(key), count);
+		IMAGE_INFO_MAP.put(key, allImages);
+		doPaint(g, imageObserver, allImages);
+	}
+
 	public static void doPaint (Graphics g, ImageObserver imageObserver, List<ObjectInfoModel> allImages) {
 		allImages.forEach(ObjectInfoModel -> {
 			g.drawImage(ObjectInfoModel.getImage(), ObjectInfoModel.getX(), ObjectInfoModel.getY(),
 				ObjectInfoModel.getWidth(), ObjectInfoModel.getHeight(), imageObserver);
 		});
 	}
+
 }
