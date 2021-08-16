@@ -88,6 +88,11 @@ public class BaseDraw {
 		if (getTime() < 1 && addTime < 1) {
 			return;
 		}
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			//
+		}
 		DATA_INFO_MAP.put(DataInfoConstant.TIME, getTime() + addTime);
 	}
 

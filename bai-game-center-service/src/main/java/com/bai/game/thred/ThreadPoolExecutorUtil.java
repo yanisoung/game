@@ -14,7 +14,7 @@ public class ThreadPoolExecutorUtil {
 
 	public static ThreadPoolExecutor getPool (String name) {
 		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(15, 50, 60, TimeUnit.MINUTES,
-			new LinkedBlockingQueue<>(100), new CustomThreadFactory(name));
+			new LinkedBlockingQueue<>(10000), new CustomThreadFactory(name));
 		return threadPoolExecutor;
 	}
 }

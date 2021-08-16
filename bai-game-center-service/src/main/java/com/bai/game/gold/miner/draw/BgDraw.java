@@ -58,16 +58,10 @@ public class BgDraw extends BaseDraw {
 	}
 
 	private static void asynChangeTime () {
-		//todo 解决线程安全问题 白
 		threadPoolExecutor.execute(new Runnable() {
 			@Override
 			public void run () {
-				try {
-					Thread.sleep(1000);
-					changeItem(-1);
-				} catch (InterruptedException e) {
-					//
-				}
+				changeItem(-1);
 			}
 		});
 	}
