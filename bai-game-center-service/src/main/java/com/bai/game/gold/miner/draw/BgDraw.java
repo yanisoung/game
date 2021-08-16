@@ -30,12 +30,8 @@ public class BgDraw extends BaseDraw {
 	public static void paint (Graphics g, ImageObserver imageObserver) {
 		//绘制背景图片
 		paintBg(g, imageObserver);
-		//是否满足过关条件
-		checkLevel(g, imageObserver);
 		//绘制积分&金币等物品
 		paintDataInfo(g);
-		//商店
-		ShopDraw.paint(g, imageObserver);
 	}
 
 	private static void paintBg (Graphics g, ImageObserver imageObserver) {
@@ -44,14 +40,6 @@ public class BgDraw extends BaseDraw {
 			ObjectInfoModel objectInfoModel = entry.getValue();
 			g.drawImage(objectInfoModel.getImage(), objectInfoModel.getX(), objectInfoModel.getY(),
 				objectInfoModel.getWidth(), objectInfoModel.getHeight(), imageObserver);
-		}
-	}
-
-	private static void checkLevel (Graphics g, ImageObserver imageObserver) {
-		Integer integral = getIntegral();
-		//开启下一级
-		if (integral.compareTo(getLevelIntegral()) >= 0) {
-			reLevelInfo(g, imageObserver);
 		}
 	}
 

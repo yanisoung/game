@@ -205,4 +205,8 @@ public class LineDraw extends BaseDraw {
 			LineDraw.status = 1;
 		}
 	}
+
+	public static boolean checkWaitStatus () {
+		return Objects.equals(LineDraw.status, 0);
+	}
 }

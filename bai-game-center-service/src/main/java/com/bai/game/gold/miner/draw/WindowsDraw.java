@@ -1,6 +1,10 @@
 package com.bai.game.gold.miner.draw;
 
-import javax.swing.*;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 /**
  * 背景窗口处理类
@@ -18,8 +22,11 @@ public class WindowsDraw {
 		jFrame.setTitle("黄金矿工");
 		// 窗口默认是不可见的
 		jFrame.setVisible(true);
-		jFrame.setSize(1200, 800);
-		jFrame.setLocation(500, 100);
+		//获取屏幕尺寸
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = 1200;
+		int height = 800;
+		jFrame.setBounds((dimension.width - width) / 2, (dimension.height - height) / 2, width, height);
 		jFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 

@@ -194,14 +194,16 @@ public class BaseDraw {
 	public static void buildXYInfo (List<ObjectInfoModel> all, ObjectInfoModel outModel) {
 		Integer x = x();
 		Integer y = y();
-		for (ObjectInfoModel infoModel : all) {
-			if (null == infoModel.getX() || null == infoModel.getY()) {
-				continue;
-			}
-			Rectangle rec = infoModel.getRec();
-			Rectangle outRec = outModel.getRec(x, y);
-			if (rec.intersects(outRec) || outRec.intersects(rec)) {
-				buildXYInfo(all, outModel);
+		if (CollectionUtils.isNotEmpty(all)) {
+			for (ObjectInfoModel infoModel : all) {
+				if (null == infoModel.getX() || null == infoModel.getY()) {
+					continue;
+				}
+				Rectangle rec = infoModel.getRec();
+				Rectangle outRec = outModel.getRec(x, y);
+				if (rec.intersects(outRec) || outRec.intersects(rec)) {
+					buildXYInfo(all, outModel);
+				}
 			}
 		}
 		//构建坐标等信息
