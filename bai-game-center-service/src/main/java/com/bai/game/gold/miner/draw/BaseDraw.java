@@ -75,14 +75,17 @@ public class BaseDraw {
 		//初始化过关的积分
 		DATA_INFO_MAP.put(DataInfoConstant.LEVEL_INTEGRAL, getLevelIntegral() + 2);
 		//初始化 刷新金子的个数
-		DATA_INFO_MAP.put(DataInfoConstant.LEVEL_GOLD_CNT, getGoldCoin() + 1);
+		DATA_INFO_MAP.put(DataInfoConstant.LEVEL_GOLD_CNT, getLevelGoldCoin() + 1);
 		//初始化 刷新石头的个数
 		DATA_INFO_MAP.put(DataInfoConstant.LEVEL_STONE_CNT, getStoneCount() + 1);
 		//初始化积分
 		DATA_INFO_MAP.put(DataInfoConstant.INTEGRAL, 0);
 		//重置 金子 & 石头
-		rePaint(DataInfoConstant.GOLD_DRAW, getGoldCount(), g, imageObserver);
+		//重置为空
+		IMAGE_INFO_MAP.put(DataInfoConstant.GOLD_DRAW, Lists.newArrayList());
+		IMAGE_INFO_MAP.put(DataInfoConstant.STONE_DRAW, Lists.newArrayList());
 		rePaint(DataInfoConstant.STONE_DRAW, getStoneCount(), g, imageObserver);
+		rePaint(DataInfoConstant.GOLD_DRAW, getGoldCount(), g, imageObserver);
 	}
 
 	public static Integer getLevelIntegral () {
@@ -99,6 +102,10 @@ public class BaseDraw {
 
 	public static Integer getGoldCoin () {
 		return DATA_INFO_MAP.get(DataInfoConstant.GOLD_COIN);
+	}
+
+	private static Integer getLevelGoldCoin () {
+		return DATA_INFO_MAP.get(DataInfoConstant.LEVEL_GOLD_CNT);
 	}
 
 	public static Integer getPotion () {
@@ -241,8 +248,6 @@ public class BaseDraw {
 	 * @param imageObserver
 	 */
 	public static void rePaint (String key, Integer count, Graphics g, ImageObserver imageObserver) {
-		//重置为空
-		IMAGE_INFO_MAP.put(key, Lists.newArrayList());
 		List<ObjectInfoModel> allImages = buildAllGoldOrStone(GoldMinerPicUtil.getByKey(key), count);
 		IMAGE_INFO_MAP.put(key, allImages);
 		doPaint(g, imageObserver, allImages);
